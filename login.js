@@ -3,6 +3,7 @@ import {
    signInWithEmailAndPassword,
    GoogleAuthProvider,
    signInWithPopup,
+   sendPasswordResetEmail,
    getFirestore,
    setDoc,
    serverTimestamp,
@@ -23,11 +24,9 @@ const login = async (e) => {
   }
 
   try {
-    // 1. User authentication
     let userCredential = await signInWithEmailAndPassword(auth, email.value, password.value);
     const user = userCredential.user;
 
-    // 2. Firestore se user ka role fetch karna
     const userDocRef = doc(db, "users", user.uid);
     const userDoc = await getDoc(userDocRef);
 
@@ -35,7 +34,6 @@ const login = async (e) => {
         const userData = userDoc.data();
         const role = userData.role;
 
-        // User data ko localStorage mein save karna
         localStorage.setItem('user', JSON.stringify({
             uid: user.uid,
             name: userData.name,
@@ -46,7 +44,6 @@ const login = async (e) => {
 
         alert("Logged in successfully!");
 
-        // 3. Folder structure ke mutabiq sahi page par redirection
         if (role === 'provider') {
             window.location.replace('./provider/provider.html');
         } else {
@@ -62,8 +59,31 @@ const login = async (e) => {
   }
 };
 
-// Login form submit event listener (Apni HTML file ke login form ki ID yahan check kar lein)
 document.getElementById('loginForm')?.addEventListener('submit', login);
+
+// Forgot Password Logic
+const sendResetBtn = document.getElementById('sendResetBtn');
+if (sendResetBtn) {
+    sendResetBtn.addEventListener('click', async () => {
+        const resetEmail = document.getElementById('resetEmail').value;
+        if (!resetEmail) {
+            alert("Please enter your email address first!");
+            return;
+        }
+
+        try {
+            await sendPasswordResetEmail(auth, resetEmail);
+            alert("Password reset link sent to your email!");
+            // Modal close karna
+            const modalEl = document.getElementById('forgotPasswordModal');
+            const modal = bootstrap.Modal.getInstance(modalEl);
+            modal.hide();
+        } catch (error) {
+            console.error("Reset Error:", error.message);
+            alert(error.message);
+        }
+    });
+}
 
 // Google Login button event listener
 const googleLoginBtn = document.getElementById('googleLoginBtn');
@@ -74,7 +94,6 @@ if (googleLoginBtn) {
             const result = await signInWithPopup(auth, provider);
             const user = result.user;
 
-            // Firestore me user ka record check karo, agar naya hai to bana do
             const userDocRef = doc(db, "users", user.uid);
             const userDoc = await getDoc(userDocRef);
 

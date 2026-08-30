@@ -1,22 +1,16 @@
 import{
    auth,
    createUserWithEmailAndPassword,
-   signInWithEmailAndPassword,
    GoogleAuthProvider,
    signInWithPopup,
-   signOut,
    sendEmailVerification,
    sendPasswordResetEmail,
-   updatePassword,
    getFirestore,
    setDoc,
    doc,
    db,
    serverTimestamp,
-   onAuthStateChanged,
-   getDoc,
-   updateDoc,
-   verifyBeforeUpdateEmail
+   getDoc
 } from "./firebase.config.js"
 
 /////////////////////// sign up /////////////////////
@@ -27,9 +21,10 @@ const signup = async (e) => {
   let name = document.getElementById('signupName');
   let email = document.getElementById('signupEmail');
   let password = document.getElementById('signupPassword');
+  let roleSelect = document.getElementById('signupRole');
 
-  if (!email.value || !password.value || !name.value) {
-    alert('All fields are required!');
+  if (!email.value || !password.value || !name.value || !roleSelect.value) {
+    alert('All fields including Role are required!');
     return; 
   }
 
@@ -37,11 +32,11 @@ const signup = async (e) => {
     let userCredential = await createUserWithEmailAndPassword(auth, email.value, password.value);
     const user = userCredential.user;
 
-    // Role ko hardcode karke 'customer' kar diya hai
+    // Dropdown se select kiya hua role yahan save hoga
     await setDoc(doc(db, "users", user.uid), {
        name: name.value,
        email: email.value,
-       role: 'customer', 
+       role: roleSelect.value, // 'customer' ya 'provider'
        isActive: true,
        timestamp: serverTimestamp()
     });
@@ -63,9 +58,7 @@ const signup = async (e) => {
 document.getElementById('signupForm')?.addEventListener('submit', signup);
 
 
-
-
-// Google Signup Integration
+// Google Signup Integration (Default role customer, ya popup through handle kar sakti hain)
 const googleSignupBtn = document.getElementById('googleSignupBtn');
 if (googleSignupBtn) {
     googleSignupBtn.addEventListener('click', async () => {
@@ -74,16 +67,21 @@ if (googleSignupBtn) {
             const result = await signInWithPopup(auth, provider);
             const user = result.user;
 
-            await setDoc(doc(db, "users", user.uid), {
-                name: user.displayName || "Google User",
-                email: user.email,
-                role: 'customer',
-                isActive: true,
-                timestamp: serverTimestamp()
-            }, { merge: true });
+            const userDocRef = doc(db, "users", user.uid);
+            const userDoc = await getDoc(userDocRef);
+
+            if (!userDoc.exists()) {
+                await setDoc(userDocRef, {
+                    name: user.displayName || "Google User",
+                    email: user.email,
+                    role: 'customer', // Google signup default as customer
+                    isActive: true,
+                    timestamp: serverTimestamp()
+                });
+            }
 
             alert("Google Signup Successful!");
-            window.location.replace('./index.html');
+            window.location.replace('./customer/customer.html');
         } catch (error) {
             console.error("Google Signup Error:", error.message);
             alert(error.message);
