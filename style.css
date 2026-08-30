@@ -1,0 +1,1555 @@
+*{
+    margin:0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* ==========================================
+   QuickServe Custom Stylesheet
+   Theme: Dark Slate & Golden Amber (Option 1)
+   ========================================== */
+
+/* Custom Slate Color & Polish */
+.bg-slate {
+  background-color: #0f172a !important; /* Premium Dark Background */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+.nav-link {
+  transition: all 0.2s ease-in-out;
+}
+
+.nav-link:hover {
+  color: #f59e0b !important; /* Golden Amber on Hover */
+}
+
+.btn-outline-light {
+  border-color: rgba(255, 255, 255, 0.3);
+  transition: all 0.3s ease;
+}
+
+.btn-outline-light:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color: #ffffff;
+  transform: translateY(-1px);
+}
+
+.btn-warning {
+  background-color: #f59e0b;
+  border: none;
+  color: #0f172a;
+  transition: all 0.3s ease;
+}
+
+.btn-warning:hover {
+  background-color: #d97706;
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(245, 158, 11, 0.3) !important;
+}
+
+
+/* Card Fade-in Entrance Animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.card-provider {
+  animation: fadeInUp 0.6s ease-out forwards;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Dynamic Animation Delays for Grid Cards */
+.col-md-6:nth-child(1) .card-provider { animation-delay: 0.1s; }
+.col-md-6:nth-child(2) .card-provider { animation-delay: 0.2s; }
+.col-md-6:nth-child(3) .card-provider { animation-delay: 0.3s; }
+.col-md-6:nth-child(4) .card-provider { animation-delay: 0.4s; }
+.col-md-6:nth-child(5) .card-provider { animation-delay: 0.5s; }
+.col-md-6:nth-child(6) .card-provider { animation-delay: 0.6s; }
+
+/* Interactive Hover Lift & Glow */
+.card-provider:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 12px 25px rgba(245, 158, 11, 0.15) !important;
+}
+
+/* Footer Link Hover Animations */
+.footer-link {
+  color: #94a3b8;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.footer-link:hover {
+  color: #f59e0b !important;
+  padding-left: 5px;
+}
+
+/* Exact Input Container & Focus Glow */
+.newsletter-wrapper {
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.newsletter-wrapper:focus-within {
+  border-color: #f59e0b !important;
+  box-shadow: 0 0 0 0.25rem rgba(245, 158, 11, 0.35) !important;
+}
+
+/* Subscribe Button Hover & Scale Animation */
+.btn-subscribe-animated {
+  background-color: #f59e0b !important;
+  color: #0f172a !important;
+  border: none !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  cursor: pointer;
+}
+
+.btn-subscribe-animated:hover {
+  background-color: #d97706 !important;
+  color: #ffffff !important;
+  transform: scale(1.05);
+  box-shadow: -4px 0 15px rgba(245, 158, 11, 0.4) !important;
+}
+
+.btn-subscribe-animated:active {
+  transform: scale(0.98);
+}
+
+.newsletter-wrapper input::placeholder {
+  color: #94a3b8;
+}
+
+/* Newsletter Input Top & Bottom Padding Adjust */
+.newsletter-wrapper input {
+  padding-top: 6px !important;    /* Top padding kam karne ke liye */
+  padding-bottom: 6px !important; /* Bottom padding kam karne ke liye */
+  height: 44px !important;         /* Overall height bhi thodi kam ho jayegi */
+}
+
+/* Button ki height bhi input ke sath match karne ke liye */
+.newsletter-wrapper button {
+  height: 44px !important;
+  padding-top: 6px !important;
+  padding-bottom: 6px !important;
+}
+
+
+/* Base Social Icon Style (Initial White Color) */
+.social-icon {
+  width: 38px !important;
+  height: 38px !important;
+  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+  color: #ffffff !important;
+  background-color: transparent !important;
+  transition: all 0.3s ease !important;
+}
+
+.social-icon i {
+  color: #ffffff !important;
+}
+
+/* Social Icons Hover - Theme Yellow */
+.social-icon:hover {
+  background-color: #f59e0b !important;
+  color: #0f172a !important;
+  border-color: #f59e0b !important;
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(245, 158, 11, 0.4);
+}
+
+.social-icon:hover i {
+  color: #0f172a !important;
+}
+
+/* Custom Animated Button Styling */
+.card-provider .button {
+  all: unset;
+  position: relative;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 46px;
+  border-radius: 50px;
+  font-size: 15px;
+  font-weight: 700;
+  color: #0f172a;
+  cursor: pointer;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+/* Base Outer Layer */
+.card-provider .button-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #f59e0b;
+  border-radius: 50px;
+  overflow: hidden;
+  z-index: 1;
+}
+
+/* Layer Structure Fix */
+.card-provider .button-bg-layers {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 300px;
+  height: 300px;
+  pointer-events: none;
+}
+
+.card-provider .button-bg-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  transform: scale(0);
+  transition: transform 1.2s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+/* Layer Color Palette */
+.card-provider .button-bg-layer.-purple {
+  background-color: #a374ff;
+}
+
+.card-provider .button-bg-layer.-turquoise {
+  background-color: #17f1d1;
+}
+
+.card-provider .button-bg-layer.-yellow {
+  background-color: #0f172a;
+}
+
+/* Text Container Alignment */
+.card-provider .button-inner {
+  position: relative;
+  z-index: 2;
+  pointer-events: none;
+  display: block;
+  text-align: center;
+  line-height: 1;
+}
+
+.card-provider .button-inner-static {
+  display: block;
+  color: #0f172a;
+  transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1), opacity 0.3s ease;
+}
+
+.card-provider .button-inner-hover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  opacity: 0;
+  color: #ffffff;
+  transform: translateY(100%);
+  transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1), opacity 0.6s ease;
+}
+
+/* Hover Animations */
+.card-provider .button:hover .button-inner-static {
+  opacity: 0;
+  transform: translateY(-100%);
+}
+
+.card-provider .button:hover .button-inner-hover {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.card-provider .button:hover .button-bg-layer-1 {
+  transform: scale(1);
+}
+
+.card-provider .button:hover .button-bg-layer-2 {
+  transition-delay: 0.08s;
+  transform: scale(1);
+}
+
+.card-provider .button:hover .button-bg-layer-3 {
+  transition-delay: 0.16s;
+  transform: scale(1);
+}
+
+
+/* Animated Button Height Reduction */
+.card-provider .button {
+  height: 38px !important; /* Original height (46px) se kam kar ke 38px di hai */
+}
+
+
+/* Navbar Login Button Hover Fix */
+.navbar .btn-outline-light:hover {
+  background-color: #f59e0b !important;
+  color: #0f172a !important;
+  border-color: #f59e0b !important;
+  box-shadow: 0 0 12px rgba(245, 158, 11, 0.4);
+}
+
+/* Uiverse Slide Fill Animation Button */
+.btn-slide-fill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1.4rem;
+  font-size: 15px;
+  font-weight: 700;
+  color: #ffffff !important;
+  border: 2px solid #f59e0b;
+  border-radius: 50px;
+  cursor: pointer;
+  position: relative;
+  background-color: transparent;
+  text-decoration: none;
+  overflow: hidden;
+  z-index: 1;
+  transition: color 0.3s ease;
+}
+
+.btn-slide-fill::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #f59e0b;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease-in-out;
+  z-index: -1;
+}
+
+.btn-slide-fill:hover {
+  color: #0f172a !important; /* Slide swipe hone par text dark ho kar 100% visible rahega */
+}
+
+.btn-slide-fill:hover::before {
+  transform: translateX(0);
+}
+
+
+/* Search Input Placeholder Color White */
+.form-control::placeholder,
+input::placeholder {
+  color: rgba(255, 255, 255, 0.75) !important; /* Soft white placeholder */
+  opacity: 1 !important; /* Firefox overlay fix */
+}
+
+/* Typing text color white */
+.form-control,
+input {
+  color: #ffffff !important;
+}
+
+
+/* Sticky Card Hierarchy Fix */
+.sticky-top {
+  z-index: 10 !important; /* Navbar typically stays at z-index 1020+ */
+}
+
+.navbar {
+  position: relative;
+  z-index: 1030 !important;
+}  
+
+
+
+/* ==========================================================
+   Responsive Fixes: Mobile Animation & Details Cards Width
+   ========================================================== */
+
+/* 1. Mobile Screen par Button Animation ki Width Fix */
+@media (max-width: 768px) {
+  /* Layer container ki width badha kar full screen/card match ki hai taake animation cut na ho */
+  .card-provider .button-bg-layers {
+    width: 750px !important;
+    height: 450px !important;
+  }
+  
+  /* Button ko fluid aur proper padding dena */
+  .card-provider .button {
+    width: 100% !important;
+  }
+}
+
+/* Guarantees & Verification Cards Equal Height & Width Fix */
+@media (min-width: 1px) {
+  .col-sm-6:has(.fa-check-circle), 
+  .col-sm-6:has(.fa-clock) {
+    display: flex !important;
+  }
+  
+  .col-sm-6:has(.fa-check-circle) > div, 
+  .col-sm-6:has(.fa-clock) > div {
+    flex: 1 !important;
+    display: flex !important;
+    align-items: center !important;
+  }
+}
+
+
+/* signup login styling  */
+
+
+
+/* --- Signup/Login Card & Compact Spacing Fix --- */
+.auth-card {
+  padding: 20px 20px 20px 20px !important; /* Padding kam ki taake chota aur neat lagay */
+  max-width: 380px !important; /* Width ko thoda aur compact kiya */
+  border: 1px solid rgba(245, 158, 11, 0.3) !important; /* Theme golden border */
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.8), 0 0 20px rgba(245, 158, 11, 0.1) !important;
+}
+
+/* Background ko website ke dark slate theme ke sath match karna */
+body.auth-body {
+  background: radial-gradient(circle at center, #1e293b 0%, #0f172a 70%, #020617 100%) !important;
+  padding: 10px !important;
+}
+
+/* Inputs ki height aur padding compact karna */
+.auth-input {
+  padding: 6px 12px !important;
+  font-size: 0.9rem !important;
+}
+
+/* Spacing between form fields kam karna */
+.auth-card .mb-3 {
+  margin-bottom: 0.75rem !important;
+}
+
+.auth-card .mb-4 {
+  margin-bottom: 1rem !important;
+}
+
+/* Orange/Red ki jagah Golden Theme Glow Button */
+.btn-orange-glow {
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%) !important;
+  color: #0f172a !important;
+  font-weight: 700 !important;
+  box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3) !important;
+}
+
+.btn-orange-glow:hover {
+  background: linear-gradient(135deg, #fbbf24 0%, #b45309 100%) !important;
+  color: #ffffff !important;
+  box-shadow: 0 6px 20px rgba(245, 158, 11, 0.5) !important;
+}
+
+/* Links aur brand accent colors ko match karna */
+.brand-title span, 
+.auth-link, 
+.btn-back-home:hover {
+  color: #f59e0b !important;
+}
+
+
+
+
+
+/* --- Signup Page Complete Layout & Visibility Fix --- */
+
+/* 1. Body ko Flexbox dena taake card bilkul center mein aaye */
+body.auth-body {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-height: 100vh !important;
+  margin: 0 !important;
+  background: radial-gradient(circle at center, #1e293b 0%, #0f172a 70%, #020617 100%) !important;
+}
+
+/* 2. Auth Card ki styling aur proper centering */
+.auth-card {
+  position: relative !important;
+  background: linear-gradient(180deg, rgba(15, 23, 42, 0.95) 0%, rgba(2, 6, 23, 0.98) 100%) !important;
+  border: 1px solid rgba(245, 158, 11, 0.3) !important;
+  border-radius: 20px !important;
+  padding: 40px 30px 30px 30px !important;
+  width: 100% !important;
+  max-width: 420px !important;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.8), 0 0 20px rgba(245, 158, 11, 0.15) !important;
+  margin: auto !important;
+}
+
+/* 3. Back to Home Button ki position aur styling */
+.btn-back-home {
+  position: absolute !important;
+  top: 15px !important;
+  left: 20px !important;
+  color: #94a3b8 !important;
+  text-decoration: none !important;
+  font-size: 0.8rem !important;
+  font-weight: 500 !important;
+  transition: all 0.3s ease !important;
+  z-index: 10 !important;
+}
+
+.btn-back-home:hover {
+  color: #f59e0b !important;
+}
+
+/* 4. Labels aur text ko clearly visible (White) karna */
+.auth-card label, 
+.auth-card .form-label,
+.auth-card p {
+  color: #e2e8f0 !important;
+}
+
+/* 5. Inputs text aur placeholder visibility */
+.auth-input {
+  background-color: #1e293b !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  color: #ffffff !important;
+}
+
+.auth-input::placeholder {
+  color: #94a3b8 !important;
+  opacity: 1 !important;
+}
+
+
+
+/* --- Google Button & All Text Visibility Fix --- */
+
+/* 1. Google Button ka text aur background fix */
+.btn-google {
+  background-color: #1e293b !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  font-weight: 600 !important;
+}
+
+.btn-google:hover {
+  background-color: #334155 !important;
+  color: #ffffff !important;
+  border-color: #f59e0b !important;
+}
+
+/* 2. Card ke andar mojood har tarah ke text ko solid white/light karna */
+.auth-card,
+.auth-card h3,
+.auth-card p,
+.auth-card span,
+.auth-card label,
+.auth-card .form-label,
+.auth-card .text-muted,
+.auth-card .text-white-50 {
+  color: #ffffff !important;
+}
+
+/* Subtitles aur small text ke liye thoda soft light tone */
+.auth-card p.text-muted, 
+.auth-card .auth-footer span {
+  color: #94a3b8 !important;
+}
+
+/* 3. OR divider ka text color */
+.auth-divider {
+  color: #94a3b8 !important;
+}
+
+
+/* --- QuickServe Uiverse Login Theme Overrides --- */
+
+body.auth-body {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-height: 100vh !important;
+  margin: 0 !important;
+  background: radial-gradient(circle at center, #1e293b 0%, #0f172a 70%, #020617 100%) !important;
+  overflow: hidden !important;
+}
+
+.form-container {
+  width: 350px !important;
+  height: auto !important;
+  max-height: 95vh !important;
+  background: linear-gradient(180deg, rgba(15, 23, 42, 0.95) 0%, rgba(2, 6, 23, 0.98) 100%) !important;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.8), 0 0 20px rgba(245, 158, 11, 0.2) !important;
+  border: 1px solid rgba(245, 158, 11, 0.3) !important;
+  border-radius: 20px !important;
+  box-sizing: border-box !important;
+  padding: 20px 25px !important;
+  overflow-y: auto !important;
+}
+
+.form-container::-webkit-scrollbar {
+  display: none;
+}
+
+.title {
+  text-align: center !important;
+  font-family: "Lucida Sans", sans-serif !important;
+  margin: 5px 0 15px 0 !important;
+  font-size: 24px !important;
+  font-weight: 800 !important;
+  color: #ffffff !important;
+  letter-spacing: 1px;
+}
+
+.title span {
+  color: #f59e0b !important;
+}
+
+.form {
+  width: 100% !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 12px !important;
+  margin-bottom: 10px !important;
+}
+
+.input {
+  border-radius: 12px !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  background-color: #1e293b !important;
+  color: #ffffff !important;
+  outline: 0 !important;
+  box-sizing: border-box !important;
+  padding: 10px 15px !important;
+  font-size: 0.85rem !important;
+}
+
+.input::placeholder {
+  color: #94a3b8 !important;
+}
+
+.input:focus {
+  border-color: #f59e0b !important;
+  box-shadow: 0 0 8px rgba(245, 158, 11, 0.4) !important;
+  background-color: #273548 !important;
+}
+
+.page-link {
+  text-decoration: none !important;
+  margin: 0 !important;
+  text-align: end !important;
+}
+
+.page-link-label {
+  cursor: pointer !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  color: #94a3b8 !important;
+}
+
+.page-link-label:hover {
+  color: #f59e0b !important;
+}
+
+.form-btn {
+  padding: 10px 15px !important;
+  border-radius: 20px !important;
+  border: 0 !important;
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%) !important;
+  color: #0f172a !important;
+  font-weight: 700 !important;
+  cursor: pointer !important;
+  box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3) !important;
+}
+
+.form-btn:hover {
+  background: linear-gradient(135deg, #fbbf24 0%, #b45309 100%) !important;
+  color: #ffffff !important;
+}
+
+.sign-up-label {
+  margin: 5px 0 0 0 !important;
+  font-size: 11px !important;
+  color: #94a3b8 !important;
+}
+
+.sign-up-link {
+  margin-left: 3px !important;
+  text-decoration: underline !important;
+  color: #f59e0b !important;
+  font-weight: 700 !important;
+}
+
+.buttons-container {
+  width: 100% !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 10px !important;
+  margin-top: 15px !important;
+}
+
+.apple-login-button,
+.google-login-button {
+  border-radius: 20px !important;
+  padding: 8px 15px !important;
+  cursor: pointer !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  gap: 8px !important;
+}
+
+.apple-login-button {
+  background-color: #000000 !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+}
+
+.google-login-button {
+  background-color: #1e293b !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+}
+
+.google-login-button:hover,
+.apple-login-button:hover {
+  border-color: #f59e0b !important;
+}
+
+.apple-icon,
+.google-icon {
+  font-size: 16px !important;
+}
+
+.btn-back-home {
+  color: #94a3b8 !important;
+  text-decoration: none !important;
+  font-size: 0.75rem !important;
+}
+
+.btn-back-home:hover {
+  color: #f59e0b !important;
+}
+
+
+/* --- Compact signup/login spacing (scrollbar hatane ke liye) --- */
+.auth-header {
+  margin-bottom: 0.5rem !important;
+}
+.auth-header .brand-title {
+  font-size: 1.4rem !important;
+  margin-bottom: 0.15rem !important;
+}
+.auth-header p {
+  margin-bottom: 0 !important;
+  font-size: 0.8rem !important;
+}
+.auth-card .form-label {
+  margin-bottom: 0.15rem !important;
+  font-size: 0.82rem !important;
+}
+.auth-card .auth-divider {
+  margin-top: 0 !important;
+  margin-bottom: 0.5rem !important;
+}
+.btn-google {
+  padding: 5px 12px !important;
+  font-size: 0.88rem !important;
+}
+.btn-orange-glow {
+  padding: 6px 12px !important;
+  font-size: 0.9rem !important;
+}
+.auth-footer {
+  margin-top: 0.75rem !important;
+}
+.auth-footer .small,
+.auth-footer span {
+  font-size: 0.8rem !important;
+}
+
+
+
+*{
+    margin:0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* ==========================================
+   QuickServe Custom Stylesheet
+   Theme: Dark Slate & Golden Amber (Option 1)
+   ========================================== */
+
+/* Custom Slate Color & Polish */
+.bg-slate {
+  background-color: #0f172a !important; /* Premium Dark Background */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+.nav-link {
+  transition: all 0.2s ease-in-out;
+}
+
+.nav-link:hover {
+  color: #f59e0b !important; /* Golden Amber on Hover */
+}
+
+.btn-outline-light {
+  border-color: rgba(255, 255, 255, 0.3);
+  transition: all 0.3s ease;
+}
+
+.btn-outline-light:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color: #ffffff;
+  transform: translateY(-1px);
+}
+
+.btn-warning {
+  background-color: #f59e0b;
+  border: none;
+  color: #0f172a;
+  transition: all 0.3s ease;
+}
+
+.btn-warning:hover {
+  background-color: #d97706;
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(245, 158, 11, 0.3) !important;
+}
+
+
+/* Card Fade-in Entrance Animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.card-provider {
+  animation: fadeInUp 0.6s ease-out forwards;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Dynamic Animation Delays for Grid Cards */
+.col-md-6:nth-child(1) .card-provider { animation-delay: 0.1s; }
+.col-md-6:nth-child(2) .card-provider { animation-delay: 0.2s; }
+.col-md-6:nth-child(3) .card-provider { animation-delay: 0.3s; }
+.col-md-6:nth-child(4) .card-provider { animation-delay: 0.4s; }
+.col-md-6:nth-child(5) .card-provider { animation-delay: 0.5s; }
+.col-md-6:nth-child(6) .card-provider { animation-delay: 0.6s; }
+
+/* Interactive Hover Lift & Glow */
+.card-provider:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 12px 25px rgba(245, 158, 11, 0.15) !important;
+}
+
+/* Footer Link Hover Animations */
+.footer-link {
+  color: #94a3b8;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.footer-link:hover {
+  color: #f59e0b !important;
+  padding-left: 5px;
+}
+
+/* Exact Input Container & Focus Glow */
+.newsletter-wrapper {
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.newsletter-wrapper:focus-within {
+  border-color: #f59e0b !important;
+  box-shadow: 0 0 0 0.25rem rgba(245, 158, 11, 0.35) !important;
+}
+
+/* Subscribe Button Hover & Scale Animation */
+.btn-subscribe-animated {
+  background-color: #f59e0b !important;
+  color: #0f172a !important;
+  border: none !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  cursor: pointer;
+}
+
+.btn-subscribe-animated:hover {
+  background-color: #d97706 !important;
+  color: #ffffff !important;
+  transform: scale(1.05);
+  box-shadow: -4px 0 15px rgba(245, 158, 11, 0.4) !important;
+}
+
+.btn-subscribe-animated:active {
+  transform: scale(0.98);
+}
+
+.newsletter-wrapper input::placeholder {
+  color: #94a3b8;
+}
+
+/* Newsletter Input Top & Bottom Padding Adjust */
+.newsletter-wrapper input {
+  padding-top: 6px !important;    /* Top padding kam karne ke liye */
+  padding-bottom: 6px !important; /* Bottom padding kam karne ke liye */
+  height: 44px !important;         /* Overall height bhi thodi kam ho jayegi */
+}
+
+/* Button ki height bhi input ke sath match karne ke liye */
+.newsletter-wrapper button {
+  height: 44px !important;
+  padding-top: 6px !important;
+  padding-bottom: 6px !important;
+}
+
+
+/* Base Social Icon Style (Initial White Color) */
+.social-icon {
+  width: 38px !important;
+  height: 38px !important;
+  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+  color: #ffffff !important;
+  background-color: transparent !important;
+  transition: all 0.3s ease !important;
+}
+
+.social-icon i {
+  color: #ffffff !important;
+}
+
+/* Social Icons Hover - Theme Yellow */
+.social-icon:hover {
+  background-color: #f59e0b !important;
+  color: #0f172a !important;
+  border-color: #f59e0b !important;
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(245, 158, 11, 0.4);
+}
+
+.social-icon:hover i {
+  color: #0f172a !important;
+}
+
+/* Custom Animated Button Styling */
+.card-provider .button {
+  all: unset;
+  position: relative;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 46px;
+  border-radius: 50px;
+  font-size: 15px;
+  font-weight: 700;
+  color: #0f172a;
+  cursor: pointer;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+/* Base Outer Layer */
+.card-provider .button-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #f59e0b;
+  border-radius: 50px;
+  overflow: hidden;
+  z-index: 1;
+}
+
+/* Layer Structure Fix */
+.card-provider .button-bg-layers {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 300px;
+  height: 300px;
+  pointer-events: none;
+}
+
+.card-provider .button-bg-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  transform: scale(0);
+  transition: transform 1.2s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+/* Layer Color Palette */
+.card-provider .button-bg-layer.-purple {
+  background-color: #a374ff;
+}
+
+.card-provider .button-bg-layer.-turquoise {
+  background-color: #17f1d1;
+}
+
+.card-provider .button-bg-layer.-yellow {
+  background-color: #0f172a;
+}
+
+/* Text Container Alignment */
+.card-provider .button-inner {
+  position: relative;
+  z-index: 2;
+  pointer-events: none;
+  display: block;
+  text-align: center;
+  line-height: 1;
+}
+
+.card-provider .button-inner-static {
+  display: block;
+  color: #0f172a;
+  transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1), opacity 0.3s ease;
+}
+
+.card-provider .button-inner-hover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  opacity: 0;
+  color: #ffffff;
+  transform: translateY(100%);
+  transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1), opacity 0.6s ease;
+}
+
+/* Hover Animations */
+.card-provider .button:hover .button-inner-static {
+  opacity: 0;
+  transform: translateY(-100%);
+}
+
+.card-provider .button:hover .button-inner-hover {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.card-provider .button:hover .button-bg-layer-1 {
+  transform: scale(1);
+}
+
+.card-provider .button:hover .button-bg-layer-2 {
+  transition-delay: 0.08s;
+  transform: scale(1);
+}
+
+.card-provider .button:hover .button-bg-layer-3 {
+  transition-delay: 0.16s;
+  transform: scale(1);
+}
+
+
+/* Animated Button Height Reduction */
+.card-provider .button {
+  height: 38px !important; /* Original height (46px) se kam kar ke 38px di hai */
+}
+
+
+/* Navbar Login Button Hover Fix */
+.navbar .btn-outline-light:hover {
+  background-color: #f59e0b !important;
+  color: #0f172a !important;
+  border-color: #f59e0b !important;
+  box-shadow: 0 0 12px rgba(245, 158, 11, 0.4);
+}
+
+/* Uiverse Slide Fill Animation Button */
+.btn-slide-fill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1.4rem;
+  font-size: 15px;
+  font-weight: 700;
+  color: #ffffff !important;
+  border: 2px solid #f59e0b;
+  border-radius: 50px;
+  cursor: pointer;
+  position: relative;
+  background-color: transparent;
+  text-decoration: none;
+  overflow: hidden;
+  z-index: 1;
+  transition: color 0.3s ease;
+}
+
+.btn-slide-fill::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #f59e0b;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease-in-out;
+  z-index: -1;
+}
+
+.btn-slide-fill:hover {
+  color: #0f172a !important; /* Slide swipe hone par text dark ho kar 100% visible rahega */
+}
+
+.btn-slide-fill:hover::before {
+  transform: translateX(0);
+}
+
+
+/* Search Input Placeholder Color White */
+.form-control::placeholder,
+input::placeholder {
+  color: rgba(255, 255, 255, 0.75) !important; /* Soft white placeholder */
+  opacity: 1 !important; /* Firefox overlay fix */
+}
+
+/* Typing text color white */
+.form-control,
+input {
+  color: #ffffff !important;
+}
+
+
+/* Sticky Card Hierarchy Fix */
+.sticky-top {
+  z-index: 10 !important; /* Navbar typically stays at z-index 1020+ */
+}
+
+.navbar {
+  position: relative;
+  z-index: 1030 !important;
+}  
+
+
+
+/* ==========================================================
+   Responsive Fixes: Mobile Animation & Details Cards Width
+   ========================================================== */
+
+/* 1. Mobile Screen par Button Animation ki Width Fix */
+@media (max-width: 768px) {
+  /* Layer container ki width badha kar full screen/card match ki hai taake animation cut na ho */
+  .card-provider .button-bg-layers {
+    width: 750px !important;
+    height: 450px !important;
+  }
+  
+  /* Button ko fluid aur proper padding dena */
+  .card-provider .button {
+    width: 100% !important;
+  }
+}
+
+/* Guarantees & Verification Cards Equal Height & Width Fix */
+@media (min-width: 1px) {
+  .col-sm-6:has(.fa-check-circle), 
+  .col-sm-6:has(.fa-clock) {
+    display: flex !important;
+  }
+  
+  .col-sm-6:has(.fa-check-circle) > div, 
+  .col-sm-6:has(.fa-clock) > div {
+    flex: 1 !important;
+    display: flex !important;
+    align-items: center !important;
+  }
+}
+
+
+/* signup login styling  */
+
+
+
+/* --- Signup/Login Card & Compact Spacing Fix --- */
+.auth-card {
+  padding: 20px 20px 20px 20px !important; /* Padding kam ki taake chota aur neat lagay */
+  max-width: 380px !important; /* Width ko thoda aur compact kiya */
+  border: 1px solid rgba(245, 158, 11, 0.3) !important; /* Theme golden border */
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.8), 0 0 20px rgba(245, 158, 11, 0.1) !important;
+}
+
+/* Background ko website ke dark slate theme ke sath match karna */
+body.auth-body {
+  background: radial-gradient(circle at center, #1e293b 0%, #0f172a 70%, #020617 100%) !important;
+  padding: 10px !important;
+}
+
+/* Inputs ki height aur padding compact karna */
+.auth-input {
+  padding: 6px 12px !important;
+  font-size: 0.9rem !important;
+}
+
+/* Spacing between form fields kam karna */
+.auth-card .mb-3 {
+  margin-bottom: 0.75rem !important;
+}
+
+.auth-card .mb-4 {
+  margin-bottom: 1rem !important;
+}
+
+/* Orange/Red ki jagah Golden Theme Glow Button */
+.btn-orange-glow {
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%) !important;
+  color: #0f172a !important;
+  font-weight: 700 !important;
+  box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3) !important;
+}
+
+.btn-orange-glow:hover {
+  background: linear-gradient(135deg, #fbbf24 0%, #b45309 100%) !important;
+  color: #ffffff !important;
+  box-shadow: 0 6px 20px rgba(245, 158, 11, 0.5) !important;
+}
+
+/* Links aur brand accent colors ko match karna */
+.brand-title span, 
+.auth-link, 
+.btn-back-home:hover {
+  color: #f59e0b !important;
+}
+
+
+
+
+
+/* --- Signup Page Complete Layout & Visibility Fix --- */
+
+/* 1. Body ko Flexbox dena taake card bilkul center mein aaye */
+body.auth-body {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-height: 100vh !important;
+  margin: 0 !important;
+  background: radial-gradient(circle at center, #1e293b 0%, #0f172a 70%, #020617 100%) !important;
+}
+
+/* 2. Auth Card ki styling aur proper centering */
+.auth-card {
+  position: relative !important;
+  background: linear-gradient(180deg, rgba(15, 23, 42, 0.95) 0%, rgba(2, 6, 23, 0.98) 100%) !important;
+  border: 1px solid rgba(245, 158, 11, 0.3) !important;
+  border-radius: 20px !important;
+  padding: 40px 30px 30px 30px !important;
+  width: 100% !important;
+  max-width: 420px !important;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.8), 0 0 20px rgba(245, 158, 11, 0.15) !important;
+  margin: auto !important;
+}
+
+/* 3. Back to Home Button ki position aur styling */
+.btn-back-home {
+  position: absolute !important;
+  top: 15px !important;
+  left: 20px !important;
+  color: #94a3b8 !important;
+  text-decoration: none !important;
+  font-size: 0.8rem !important;
+  font-weight: 500 !important;
+  transition: all 0.3s ease !important;
+  z-index: 10 !important;
+}
+
+.btn-back-home:hover {
+  color: #f59e0b !important;
+}
+
+/* 4. Labels aur text ko clearly visible (White) karna */
+.auth-card label, 
+.auth-card .form-label,
+.auth-card p {
+  color: #e2e8f0 !important;
+}
+
+/* 5. Inputs text aur placeholder visibility */
+.auth-input {
+  background-color: #1e293b !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  color: #ffffff !important;
+}
+
+.auth-input::placeholder {
+  color: #94a3b8 !important;
+  opacity: 1 !important;
+}
+
+
+
+/* --- Google Button & All Text Visibility Fix --- */
+
+/* 1. Google Button ka text aur background fix */
+.btn-google {
+  background-color: #1e293b !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  font-weight: 600 !important;
+}
+
+.btn-google:hover {
+  background-color: #334155 !important;
+  color: #ffffff !important;
+  border-color: #f59e0b !important;
+}
+
+/* 2. Card ke andar mojood har tarah ke text ko solid white/light karna */
+.auth-card,
+.auth-card h3,
+.auth-card p,
+.auth-card span,
+.auth-card label,
+.auth-card .form-label,
+.auth-card .text-muted,
+.auth-card .text-white-50 {
+  color: #ffffff !important;
+}
+
+/* Subtitles aur small text ke liye thoda soft light tone */
+.auth-card p.text-muted, 
+.auth-card .auth-footer span {
+  color: #94a3b8 !important;
+}
+
+/* 3. OR divider ka text color */
+.auth-divider {
+  color: #94a3b8 !important;
+}
+
+
+/* --- QuickServe Uiverse Login Theme Overrides --- */
+
+body.auth-body {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-height: 100vh !important;
+  margin: 0 !important;
+  background: radial-gradient(circle at center, #1e293b 0%, #0f172a 70%, #020617 100%) !important;
+  overflow: hidden !important;
+}
+
+.form-container {
+  width: 350px !important;
+  height: auto !important;
+  max-height: 95vh !important;
+  background: linear-gradient(180deg, rgba(15, 23, 42, 0.95) 0%, rgba(2, 6, 23, 0.98) 100%) !important;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.8), 0 0 20px rgba(245, 158, 11, 0.2) !important;
+  border: 1px solid rgba(245, 158, 11, 0.3) !important;
+  border-radius: 20px !important;
+  box-sizing: border-box !important;
+  padding: 20px 25px !important;
+  overflow-y: auto !important;
+}
+
+.form-container::-webkit-scrollbar {
+  display: none;
+}
+
+.title {
+  text-align: center !important;
+  font-family: "Lucida Sans", sans-serif !important;
+  margin: 5px 0 15px 0 !important;
+  font-size: 24px !important;
+  font-weight: 800 !important;
+  color: #ffffff !important;
+  letter-spacing: 1px;
+}
+
+.title span {
+  color: #f59e0b !important;
+}
+
+.form {
+  width: 100% !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 12px !important;
+  margin-bottom: 10px !important;
+}
+
+.input {
+  border-radius: 12px !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  background-color: #1e293b !important;
+  color: #ffffff !important;
+  outline: 0 !important;
+  box-sizing: border-box !important;
+  padding: 10px 15px !important;
+  font-size: 0.85rem !important;
+}
+
+.input::placeholder {
+  color: #94a3b8 !important;
+}
+
+.input:focus {
+  border-color: #f59e0b !important;
+  box-shadow: 0 0 8px rgba(245, 158, 11, 0.4) !important;
+  background-color: #273548 !important;
+}
+
+.page-link {
+  text-decoration: none !important;
+  margin: 0 !important;
+  text-align: end !important;
+}
+
+.page-link-label {
+  cursor: pointer !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  color: #94a3b8 !important;
+}
+
+.page-link-label:hover {
+  color: #f59e0b !important;
+}
+
+.form-btn {
+  padding: 10px 15px !important;
+  border-radius: 20px !important;
+  border: 0 !important;
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%) !important;
+  color: #0f172a !important;
+  font-weight: 700 !important;
+  cursor: pointer !important;
+  box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3) !important;
+}
+
+.form-btn:hover {
+  background: linear-gradient(135deg, #fbbf24 0%, #b45309 100%) !important;
+  color: #ffffff !important;
+}
+
+.sign-up-label {
+  margin: 5px 0 0 0 !important;
+  font-size: 11px !important;
+  color: #94a3b8 !important;
+}
+
+.sign-up-link {
+  margin-left: 3px !important;
+  text-decoration: underline !important;
+  color: #f59e0b !important;
+  font-weight: 700 !important;
+}
+
+.buttons-container {
+  width: 100% !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 10px !important;
+  margin-top: 15px !important;
+}
+
+.apple-login-button,
+.google-login-button {
+  border-radius: 20px !important;
+  padding: 8px 15px !important;
+  cursor: pointer !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  gap: 8px !important;
+}
+
+.apple-login-button {
+  background-color: #000000 !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+}
+
+.google-login-button {
+  background-color: #1e293b !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+}
+
+.google-login-button:hover,
+.apple-login-button:hover {
+  border-color: #f59e0b !important;
+}
+
+.apple-icon,
+.google-icon {
+  font-size: 16px !important;
+}
+
+.btn-back-home {
+  color: #94a3b8 !important;
+  text-decoration: none !important;
+  font-size: 0.75rem !important;
+}
+
+.btn-back-home:hover {
+  color: #f59e0b !important;
+}
+
+
+/* --- Compact signup/login spacing (scrollbar hatane ke liye) --- */
+.auth-header {
+  margin-bottom: 0.5rem !important;
+}
+.auth-header .brand-title {
+  font-size: 1.4rem !important;
+  margin-bottom: 0.15rem !important;
+}
+.auth-header p {
+  margin-bottom: 0 !important;
+  font-size: 0.8rem !important;
+}
+.auth-card .form-label {
+  margin-bottom: 0.15rem !important;
+  font-size: 0.82rem !important;
+}
+.auth-card .auth-divider {
+  margin-top: 0 !important;
+  margin-bottom: 0.5rem !important;
+}
+.btn-google {
+  padding: 5px 12px !important;
+  font-size: 0.88rem !important;
+}
+.btn-orange-glow {
+  padding: 6px 12px !important;
+  font-size: 0.9rem !important;
+}
+.auth-footer {
+  margin-top: 0.75rem !important;
+}
+.auth-footer .small,
+.auth-footer span {
+  font-size: 0.8rem !important;
+}

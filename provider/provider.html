@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Provider Dashboard - QuickServe</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+  body{ background-color:#0f172a; color:#e2e8f0; font-family:'Inter', sans-serif; min-height:100vh; }
+  .stat-card{
+    background: linear-gradient(180deg, rgba(30,41,59,0.9) 0%, rgba(15,23,42,0.95) 100%);
+    border:1px solid rgba(255,255,255,0.08); border-radius:16px; padding:20px;
+    transition: transform .25s ease, border-color .25s ease;
+  }
+  .stat-card:hover{ transform:translateY(-4px); border-color: rgba(245,158,11,0.4); }
+  .stat-icon{ width:46px; height:46px; border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:20px; }
+  .profile-card{
+    background: linear-gradient(180deg, rgba(30,41,59,0.9) 0%, rgba(15,23,42,0.96) 100%);
+    border:1px solid rgba(245,158,11,0.25); border-radius:16px; padding:22px;
+  }
+  .profile-avatar{
+    width:72px; height:72px; border-radius:50%; background:#f59e0b; color:#0f172a;
+    display:flex; align-items:center; justify-content:center; font-weight:800; font-size:1.6rem;
+  }
+  .avail-dot{ width:10px; height:10px; border-radius:50%; background:#22c55e; display:inline-block; box-shadow:0 0 8px #22c55e; }
+  .booking-row{
+    background: linear-gradient(180deg, rgba(30,41,59,0.85) 0%, rgba(15,23,42,0.95) 100%);
+    border:1px solid rgba(255,255,255,0.08); border-radius:14px; transition:border-color .2s ease;
+  }
+  .booking-row:hover{ border-color: rgba(245,158,11,0.3); }
+  .badge-status{ font-weight:700; font-size:0.72rem; padding:6px 12px; border-radius:20px; letter-spacing:.3px; white-space:nowrap; }
+  .status-pending{ background:rgba(245,158,11,0.15); color:#f59e0b; border:1px solid rgba(245,158,11,0.4); }
+  .status-accepted{ background:rgba(56,189,248,0.15); color:#38bdf8; border:1px solid rgba(56,189,248,0.4); }
+  .status-progress{ background:rgba(167,139,250,0.15); color:#a78bfa; border:1px solid rgba(167,139,250,0.4); }
+  .status-completed{ background:rgba(34,197,94,0.15); color:#22c55e; border:1px solid rgba(34,197,94,0.4); }
+  .status-rejected{ background:rgba(248,113,113,0.15); color:#f87171; border:1px solid rgba(248,113,113,0.4); }
+  .booking-id{ font-family:monospace; color:#94a3b8; font-size:0.78rem; }
+  .tab-pill{
+    border:1px solid rgba(255,255,255,0.15); background:transparent; color:#94a3b8;
+    border-radius:20px; padding:6px 16px; font-size:0.82rem; font-weight:600; transition:.2s ease;
+  }
+  .tab-pill.active, .tab-pill:hover{ background:#f59e0b; color:#0f172a; border-color:#f59e0b; }
+  .btn-accept{ background:#22c55e; color:#0f172a; border:none; font-weight:700; }
+  .btn-accept:hover{ background:#16a34a; color:#fff; }
+  .btn-reject{ background:transparent; color:#f87171; border:1px solid #f87171; font-weight:700; }
+  .btn-reject:hover{ background:#f87171; color:#0f172a; }
+  .btn-progress{ background:#a78bfa; color:#0f172a; border:none; font-weight:700; }
+  .btn-progress:hover{ background:#8b5cf6; color:#fff; }
+  .btn-complete{ background:#38bdf8; color:#0f172a; border:none; font-weight:700; }
+  .btn-complete:hover{ background:#0ea5e9; color:#fff; }
+  .empty-state{ color:#94a3b8; }
+  .section-title{ font-weight:800; letter-spacing:.3px; }
+</style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg bg-slate navbar-dark sticky-top">
+  <div class="container">
+    <a class="navbar-brand fw-bold brand-title" href="#">Quick<span>Serve</span></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav1">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="nav1">
+      <ul class="navbar-nav mx-auto">
+        <li class="nav-item"><a class="nav-link active" style="color:#f59e0b" href="#">Provider Dashboard</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">My Profile</a></li>
+      </ul>
+      <a href="#" class="btn btn-outline-light btn-sm rounded-pill px-3">Logout</a>
+    </div>
+  </div>
+</nav>
+
+<div class="container py-4">
+
+  <!-- Profile summary -->
+  <div class="profile-card mb-4 d-flex flex-wrap gap-3 justify-content-between align-items-center">
+    <div class="d-flex align-items-center gap-3">
+      <div class="profile-avatar">B</div>
+      <div>
+        <div class="fw-bold fs-5">Bilal Electric Works</div>
+        <div class="small text-white-50"><i class="bi bi-geo-alt me-1"></i>Gulshan-e-Iqbal, Karachi &nbsp;•&nbsp; Electrician &nbsp;•&nbsp; 6 yrs experience</div>
+        <div class="small mt-1">
+          <span class="text-warning"><i class="bi bi-star-fill"></i> 4.8 (132 reviews)</span>
+          &nbsp;•&nbsp; <span class="text-white-50">Rs. 800 - Rs. 2,500 / visit</span>
+        </div>
+      </div>
+    </div>
+    <div class="d-flex align-items-center gap-3">
+      <div class="d-flex align-items-center gap-2 small">
+        <span class="avail-dot"></span> Available for bookings
+      </div>
+      <button class="btn btn-outline-light btn-sm rounded-pill px-3">Edit Profile</button>
+    </div>
+  </div>
+
+  <!-- Stat cards -->
+  <div class="row g-3 mb-4">
+    <div class="col-6 col-md-3">
+      <div class="stat-card d-flex align-items-center gap-3">
+        <div class="stat-icon" style="background:rgba(245,158,11,0.15); color:#f59e0b;"><i class="bi bi-bell"></i></div>
+        <div><div class="fs-4 fw-800" id="countPending">0</div><div class="small text-white-50">New Requests</div></div>
+      </div>
+    </div>
+    <div class="col-6 col-md-3">
+      <div class="stat-card d-flex align-items-center gap-3">
+        <div class="stat-icon" style="background:rgba(56,189,248,0.15); color:#38bdf8;"><i class="bi bi-check2"></i></div>
+        <div><div class="fs-4 fw-800" id="countAccepted">0</div><div class="small text-white-50">Accepted</div></div>
+      </div>
+    </div>
+    <div class="col-6 col-md-3">
+      <div class="stat-card d-flex align-items-center gap-3">
+        <div class="stat-icon" style="background:rgba(167,139,250,0.15); color:#a78bfa;"><i class="bi bi-arrow-repeat"></i></div>
+        <div><div class="fs-4 fw-800" id="countProgress">0</div><div class="small text-white-50">In Progress</div></div>
+      </div>
+    </div>
+    <div class="col-6 col-md-3">
+      <div class="stat-card d-flex align-items-center gap-3">
+        <div class="stat-icon" style="background:rgba(34,197,94,0.15); color:#22c55e;"><i class="bi bi-trophy"></i></div>
+        <div><div class="fs-4 fw-800" id="countCompleted">0</div><div class="small text-white-50">Completed</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
+    <h4 class="section-title mb-0">Bookings</h4>
+    <div class="d-flex flex-wrap gap-2" id="tabBar">
+      <button class="tab-pill active" data-filter="all">All</button>
+      <button class="tab-pill" data-filter="Pending">Pending</button>
+      <button class="tab-pill" data-filter="Accepted">Accepted</button>
+      <button class="tab-pill" data-filter="In Progress">In Progress</button>
+      <button class="tab-pill" data-filter="Completed">Completed</button>
+      <button class="tab-pill" data-filter="Rejected">Rejected</button>
+    </div>
+  </div>
+
+  <div class="d-flex flex-column gap-3" id="bookingsList"></div>
+  <div class="text-center py-5 empty-state d-none" id="emptyState">
+    <i class="bi bi-clipboard-x fs-1 d-block mb-2"></i>
+    No bookings in this category.
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+// ---- Dummy data (replace with Supabase/Firebase queries filtered by provider_id) ----
+let bookings = [
+  {id:"QS-84213", customer:"Ayesha Khan", service:"Wiring Repair", date:"2026-09-02", time:"11:00 AM", location:"DHA Phase 5, Karachi", desc:"Two switchboards not working, need urgent fix.", status:"Pending"},
+  {id:"QS-84220", customer:"Hassan Raza", service:"New Socket Installation", date:"2026-09-03", time:"04:00 PM", location:"Gulistan-e-Johar, Karachi", desc:"Need 3 new sockets installed in living room.", status:"Pending"},
+  {id:"QS-77120", customer:"Fatima Noor", service:"Fan Installation", date:"2026-08-28", time:"09:30 AM", location:"Clifton, Karachi", desc:"Install 2 ceiling fans.", status:"Accepted"},
+  {id:"QS-65590", customer:"Ahmed Ali", service:"Breaker Panel Check", date:"2026-08-25", time:"03:00 PM", location:"North Nazimabad, Karachi", desc:"Frequent tripping, needs inspection.", status:"In Progress"},
+  {id:"QS-51002", customer:"Zara Sheikh", service:"Full House Rewiring", date:"2026-08-15", time:"10:00 AM", location:"Bahadurabad, Karachi", desc:"Old wiring replacement for 5-marla house.", status:"Completed"},
+  {id:"QS-49871", customer:"Omar Farooq", service:"Emergency Repair", date:"2026-08-10", time:"01:00 PM", location:"Malir, Karachi", desc:"Short circuit issue.", status:"Rejected"},
+];
+
+let activeFilter = "all";
+const statusClass = {
+  "Pending":"status-pending","Accepted":"status-accepted","In Progress":"status-progress",
+  "Completed":"status-completed","Rejected":"status-rejected"
+};
+
+function actionButtons(b){
+  // Business rules: rejected can't move to In Progress; completed can't be edited.
+  if(b.status === "Pending"){
+    return `<button class="btn btn-sm btn-accept rounded-pill px-3" onclick="updateStatus('${b.id}','Accepted')">Accept</button>
+            <button class="btn btn-sm btn-reject rounded-pill px-3" onclick="updateStatus('${b.id}','Rejected')">Reject</button>`;
+  }
+  if(b.status === "Accepted"){
+    return `<button class="btn btn-sm btn-progress rounded-pill px-3" onclick="updateStatus('${b.id}','In Progress')">Start Work</button>`;
+  }
+  if(b.status === "In Progress"){
+    return `<button class="btn btn-sm btn-complete rounded-pill px-3" onclick="updateStatus('${b.id}','Completed')">Mark Completed</button>`;
+  }
+  if(b.status === "Completed"){
+    return `<span class="small text-success"><i class="bi bi-check-circle-fill me-1"></i>Job done</span>`;
+  }
+  if(b.status === "Rejected"){
+    return `<span class="small text-white-50">No further action</span>`;
+  }
+  return "";
+}
+
+function render(){
+  const list = document.getElementById("bookingsList");
+  const empty = document.getElementById("emptyState");
+  const filtered = activeFilter === "all" ? bookings : bookings.filter(b => b.status === activeFilter);
+  list.innerHTML = "";
+  empty.classList.toggle("d-none", filtered.length > 0);
+
+  filtered.forEach(b => {
+    const row = document.createElement("div");
+    row.className = "booking-row p-3";
+    row.innerHTML = `
+      <div class="d-flex flex-wrap justify-content-between align-items-start gap-2">
+        <div>
+          <div class="d-flex align-items-center gap-2 mb-1">
+            <span class="fw-bold">${b.customer}</span>
+            <span class="badge-status ${statusClass[b.status]}">${b.status}</span>
+          </div>
+          <div class="small text-white-50 mb-1">${b.service}</div>
+          <div class="small text-white-50 mb-1">
+            <i class="bi bi-calendar3 me-1"></i>${b.date} &nbsp; <i class="bi bi-clock me-1"></i>${b.time}
+            &nbsp; <i class="bi bi-geo-alt me-1"></i>${b.location}
+          </div>
+          <div class="small text-white-50 fst-italic mb-1">"${b.desc}"</div>
+          <div class="booking-id">Booking ID: ${b.id}</div>
+        </div>
+        <div class="d-flex flex-column align-items-end gap-2">
+          <div class="d-flex gap-2">${actionButtons(b)}</div>
+        </div>
+      </div>`;
+    list.appendChild(row);
+  });
+
+  document.getElementById("countPending").textContent = bookings.filter(b=>b.status==="Pending").length;
+  document.getElementById("countAccepted").textContent = bookings.filter(b=>b.status==="Accepted").length;
+  document.getElementById("countProgress").textContent = bookings.filter(b=>b.status==="In Progress").length;
+  document.getElementById("countCompleted").textContent = bookings.filter(b=>b.status==="Completed").length;
+}
+
+function updateStatus(id, newStatus){
+  const b = bookings.find(x=>x.id===id);
+  b.status = newStatus;
+  render();
+}
+
+document.querySelectorAll(".tab-pill").forEach(btn=>{
+  btn.addEventListener("click", ()=>{
+    document.querySelectorAll(".tab-pill").forEach(b=>b.classList.remove("active"));
+    btn.classList.add("active");
+    activeFilter = btn.dataset.filter;
+    render();
+  });
+});
+
+render();
+</script>
+</body>
+</html>
