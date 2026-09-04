@@ -2327,3 +2327,29 @@ body.auth-body {
 .auth-footer span {
   font-size: 0.8rem !important;
 }
+
+
+/* Responsive adjustments for Provider Details page */
+@media (max-width: 992px) {
+  .sticky-lg-top {
+    position: relative !important;
+    top: 0 !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .card {
+    padding: 1.5rem !important;
+  }
+  
+  .newsletter-wrapper {
+    flex-direction: column !important;
+  }
+  
+  .newsletter-wrapper .btn {
+    width: 100% !important;
+    margin-top: 8px !important;
+    border-radius: 0.5rem !important;
+  }
+}
+

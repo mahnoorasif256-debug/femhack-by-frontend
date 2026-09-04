@@ -3,33 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>services</title>
+    <title>Services - QuickServe</title>
 
-    <!--fontawesome cdn  -->
+    <!-- FontAwesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-
-    <!--  bootstrap cdn -->
-
-
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-
-<link rel="stylesheet" href="./style.css">
-
-
+    <!-- Bootstrap CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="./style.css">
 </head>
 <body>
 
-
-
+  <!-- Navbar -->
   <nav class="navbar navbar-expand-lg sticky-top navbar-dark bg-slate py-3 border-bottom border-warning-subtle">
     <div class="container">
       <a class="navbar-brand fw-bold fs-3 d-flex align-items-center gap-2" href="index.html">
         <span class="bg-warning text-dark px-2 py-1 rounded-3 fs-4 shadow-sm">⚡</span>
         <span class="text-white">Quick<span class="text-warning">Serve</span></span>
       </a>
-      <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
+      <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
 
@@ -45,238 +37,222 @@
             <a class="nav-link fw-medium px-3 text-light" href="#how-it-works">How It Works</a>
           </li>
         </ul>
-        <div class="d-flex align-items-center gap-3">
-          <a href="login.html" class="btn btn-outline-light btn-slide-fill rounded-pill px-4 fw-semibold text-decoration-none">Login</a>
-          <a href="signup.html" class="btn btn-warning rounded-pill px-4 fw-bold shadow-sm">Get Started</a>
+        <div class="d-flex flex-column flex-lg-row align-stretch align-lg-items-center gap-3 mt-3 mt-lg-0">
+          <a href="login.html" class="btn btn-outline-light btn-slide-fill rounded-pill px-4 fw-semibold text-decoration-none text-center">Login</a>
+          <a href="signup.html" class="btn btn-warning rounded-pill px-4 fw-bold shadow-sm text-center">Get Started</a>
         </div>
       </div>
     </div>
   </nav>
 
-
-
-<!-- Mandatory Booking Modal -->
-
-<section class="py-5 bg-white text-dark">
-  <div class="container py-2">
-    <div class="row g-5">
-      
-      <!-- Left Column: Provider Card & Info -->
-      <div class="col-lg-5">
-        <div class="card bg-light border border-secondary border-opacity-25 rounded-4 p-4 text-center sticky-top" style="top: 20px;">
-          <img id="p-img" src="https://images.unsplash.com/photo-1540569014015-19a7be504e3a?w=400&auto=format&fit=crop&q=80" alt="Provider" class="rounded-circle object-fit-cover mx-auto mb-3 border border-warning border-3" width="130" height="130">
-          
-          <h3 id="p-name" class="fw-bold text-dark mb-1">Ali Khan</h3>
-          <span id="p-category" class="badge bg-warning text-dark fw-bold px-3 py-2 rounded-pill mx-auto mb-3">Electrician</span>
-
-          <div class="d-flex justify-content-center gap-3 text-secondary fs-7 mb-3">
-            <span><i class="fas fa-star text-warning me-1"></i> <strong class="text-dark" id="p-rating">4.9</strong> (120 reviews)</span>
-            <span><i class="fas fa-briefcase text-warning me-1"></i> <span id="p-exp" class="text-dark">6+ Years Exp.</span></span>
-          </div>
-
-          <p class="text-secondary fs-7"><i class="fas fa-location-dot text-warning me-1"></i> <span id="p-location" class="text-dark">Karachi, Pakistan</span></p>
-
-          <hr class="border-secondary border-opacity-25 my-3">
-
-          <div class="d-flex justify-content-between align-items-center mb-4 px-2">
-            <span class="text-secondary fs-7">Service Fee</span>
-            <span id="p-price" class="fs-3 fw-bold text-warning">Rs. 1,500</span>
-          </div>
-
-          <button class="btn btn-warning w-100 py-3 rounded-pill fw-bold text-dark fs-6" data-bs-toggle="modal" data-bs-target="#bookingModal">
-            Book Service Now
-          </button>
-        </div>
-      </div>
-
-      <!-- Right Column: Details & Verification -->
-      <div class="col-lg-7">
-        <h4 class="fw-bold text-warning mb-3"><i class="fas fa-user-check me-2"></i>About Provider</h4>
-        <p class="text-dark leading-relaxed mb-4" id="p-desc">
-          Professional expert offering top-quality repair, installation, and maintenance services with guaranteed satisfaction and quick response times.
-        </p>
-
-        <h4 class="fw-bold text-warning mb-3"><i class="fas fa-shield-halved me-2"></i>Guarantees & Verification</h4>
-        <div class="row g-3 mb-4">
-          <div class="col-sm-6">
-            <div class="p-3 bg-light rounded-3 border border-secondary border-opacity-25 d-flex align-items-center gap-3">
-              <i class="fas fa-check-circle text-success fs-4"></i>
-              <div>
-                <h6 class="mb-0 fw-bold text-dark">Verified Professional</h6>
-                <small class="text-secondary">CNIC & Background Checked</small>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-6">
-            <div class="p-3 bg-light rounded-3 border border-secondary border-opacity-25 d-flex align-items-center gap-3">
-              <i class="fas fa-clock text-warning fs-4"></i>
-              <div>
-                <h6 class="mb-0 fw-bold text-dark">On-Time Arrival</h6>
-                <small class="text-secondary">30-45 Mins Arrival</small>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Service Specialization Badges -->
-        <h4 class="fw-bold text-warning mb-3"><i class="fas fa-tools me-2"></i>Specialization & Skills</h4>
-        <div class="d-flex flex-wrap gap-2 mb-4" id="p-badges">
-          <span class="badge bg-slate text-warning border border-warning border-opacity-50 px-3 py-2 rounded-pill fs-7">Home Wiring</span>
-          <span class="badge bg-slate text-warning border border-warning border-opacity-50 px-3 py-2 rounded-pill fs-7">Breaker Repair</span>
-        </div>
-
-        <!-- Dynamic Client Feedback Snippet -->
-        <h4 class="fw-bold text-warning mb-3"><i class="fas fa-comment-dots me-2"></i>Client Feedback</h4>
-        <div class="card bg-light border border-secondary border-opacity-25 rounded-4 p-3 mb-3">
-          <div class="d-flex align-items-center justify-content-between mb-2">
-            <div class="d-flex align-items-center gap-2">
-              <img id="review-img" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80" alt="Client" class="rounded-circle object-fit-cover" width="40" height="40">
-              <div>
-                <h6 class="mb-0 fw-bold text-dark fs-7" id="review-name">Ayesha Malik</h6>
-                <small class="text-muted" style="font-size: 11px;" id="review-time">2 days ago</small>
-              </div>
-            </div>
-            <div class="text-warning fs-7">
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-            </div>
-          </div>
-          <p class="text-secondary fs-7 mb-0" id="review-text">"Extremely professional and punctual. Fixed our house wiring issue very cleanly in no time. Highly recommended!"</p>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-
-
-<!-- Booking Modal -->
-<div class="modal fade" id="bookingModal" tabindex="-1" aria-labelledby="bookingModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content bg-slate text-white border border-secondary shadow-lg">
-      <div class="modal-header border-bottom border-secondary">
-        <h5 class="modal-title fw-bold text-warning" id="bookingModalLabel">Book Service Request</h5>
-        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <form id="bookingForm">
-          <div class="mb-3">
-            <label class="form-label text-light fs-7">Service Date</label>
-            <input type="date" id="bookDate" class="form-control bg-dark text-white border-secondary" required>
-          </div>
-          <div class="mb-3">
-            <label class="form-label text-light fs-7">Preferred Time</label>
-            <input type="time" id="bookTime" class="form-control bg-dark text-white border-secondary" required>
-          </div>
-          <div class="mb-3">
-            <label class="form-label text-light fs-7">Your Location / Address</label>
-            <input type="text" id="bookLocation" class="form-control bg-dark text-white border-secondary" placeholder="e.g. Gulshan-e-Iqbal, Karachi" required>
-          </div>
-          <div class="mb-3">
-            <label class="form-label text-light fs-7">Service Details / Work Description</label>
-            <textarea id="bookDesc" class="form-control bg-dark text-white border-secondary" rows="3" placeholder="Describe the issue briefly..."></textarea>
-          </div>
-          <button type="submit" class="btn btn-warning w-100 fw-bold py-2 mt-2">Confirm & Send Booking</button>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-
-
-
-
-
-<!-- Modern Sleek Footer Start -->
-<footer class="bg-slate text-light pt-5 pb-4 border-top border-secondary">
-  <div class="container">
-    <div class="row g-4 mb-5">
-      
-      <!-- Column 1: Brand & Social Icons -->
-      <div class="col-lg-3 col-md-6">
-        <a class="navbar-brand fw-bold fs-3 d-flex align-items-center gap-2 mb-3" href="index.html">
-          <span class="bg-warning text-dark px-2 py-1 rounded-3 fs-4 shadow-sm">⚡</span>
-          <span class="text-white">Quick<span class="text-warning">Serve</span></span>
-        </a>
-        <p class="text-secondary fs-7 mb-4">QuickServe connects you with verified local service professionals quickly and hassle-free.</p>
+  <!-- Main Section -->
+  <section class="py-5 bg-white text-dark">
+    <div class="container py-2">
+      <div class="row g-5">
         
-        <!-- Social Icons -->
+        <!-- Left Column: Provider Card & Info -->
+        <div class="col-12 col-lg-5">
+          <div class="card bg-light border border-secondary border-opacity-25 rounded-4 p-4 text-center">
+            <img id="p-img" src="https://images.unsplash.com/photo-1540569014015-19a7be504e3a?w=400&auto=format&fit=crop&q=80" alt="Provider" class="rounded-circle object-fit-cover mx-auto mb-3 border border-warning border-3" width="130" height="130">
+            
+            <h3 id="p-name" class="fw-bold text-dark mb-1">Ali Khan</h3>
+            <span id="p-category" class="badge bg-warning text-dark fw-bold px-3 py-2 rounded-pill mx-auto mb-3">Electrician</span>
 
-        <div class="d-flex gap-2">
-  <a href="#" class="social-icon facebook rounded-circle d-flex align-items-center justify-content-center text-decoration-none">
-    <i class="fab fa-facebook-f"></i>
-  </a>
-  <a href="#" class="social-icon whatsapp rounded-circle d-flex align-items-center justify-content-center text-decoration-none">
-    <i class="fab fa-whatsapp"></i>
-  </a>
-  <a href="#" class="social-icon instagram rounded-circle d-flex align-items-center justify-content-center text-decoration-none">
-    <i class="fab fa-instagram"></i>
-  </a>
-  <a href="#" class="social-icon youtube rounded-circle d-flex align-items-center justify-content-center text-decoration-none">
-    <i class="fab fa-youtube"></i>
-  </a>
-</div>
+            <div class="d-flex flex-wrap justify-content-center gap-3 text-secondary fs-7 mb-3">
+              <span><i class="fas fa-star text-warning me-1"></i> <strong class="text-dark" id="p-rating">4.9</strong> (120 reviews)</span>
+              <span><i class="fas fa-briefcase text-warning me-1"></i> <span id="p-exp" class="text-dark">6+ Years Exp.</span></span>
+            </div>
+
+            <p class="text-secondary fs-7"><i class="fas fa-location-dot text-warning me-1"></i> <span id="p-location" class="text-dark">Karachi, Pakistan</span></p>
+
+            <hr class="border-secondary border-opacity-25 my-3">
+
+            <div class="d-flex justify-content-between align-items-center mb-4 px-2">
+              <span class="text-secondary fs-7">Service Fee</span>
+              <span id="p-price" class="fs-3 fw-bold text-warning">Rs. 1,500</span>
+            </div>
+
+            <button class="btn btn-warning w-100 py-3 rounded-pill fw-bold text-dark fs-6 shadow-sm" data-bs-toggle="modal" data-bs-target="#bookingModal">
+              Book Service Now
+            </button>
+          </div>
+        </div>
+
+        <!-- Right Column: Details & Verification -->
+        <div class="col-12 col-lg-7">
+          <h4 class="fw-bold text-warning mb-3"><i class="fas fa-user-check me-2"></i>About Provider</h4>
+          <p class="text-dark leading-relaxed mb-4" id="p-desc">
+            Professional expert offering top-quality repair, installation, and maintenance services with guaranteed satisfaction and quick response times.
+          </p>
+
+          <h4 class="fw-bold text-warning mb-3"><i class="fas fa-shield-halved me-2"></i>Guarantees & Verification</h4>
+          <div class="row g-3 mb-4">
+            <div class="col-12 col-sm-6">
+              <div class="p-3 bg-light rounded-3 border border-secondary border-opacity-25 d-flex align-items-center gap-3 h-100">
+                <i class="fas fa-check-circle text-success fs-4 flex-shrink-0"></i>
+                <div>
+                  <h6 class="mb-0 fw-bold text-dark">Verified Professional</h6>
+                  <small class="text-secondary">CNIC & Background Checked</small>
+                </div>
+              </div>
+            </div>
+            <div class="col-12 col-sm-6">
+              <div class="p-3 bg-light rounded-3 border border-secondary border-opacity-25 d-flex align-items-center gap-3 h-100">
+                <i class="fas fa-clock text-warning fs-4 flex-shrink-0"></i>
+                <div>
+                  <h6 class="mb-0 fw-bold text-dark">On-Time Arrival</h6>
+                  <small class="text-secondary">30-45 Mins Arrival</small>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Service Specialization Badges -->
+          <h4 class="fw-bold text-warning mb-3"><i class="fas fa-tools me-2"></i>Specialization & Skills</h4>
+          <div class="d-flex flex-wrap gap-2 mb-4" id="p-badges">
+            <span class="badge bg-slate text-warning border border-warning border-opacity-50 px-3 py-2 rounded-pill fs-7">Home Wiring</span>
+            <span class="badge bg-slate text-warning border border-warning border-opacity-50 px-3 py-2 rounded-pill fs-7">Breaker Repair</span>
+          </div>
+
+          <!-- Dynamic Client Feedback Snippet -->
+          <h4 class="fw-bold text-warning mb-3"><i class="fas fa-comment-dots me-2"></i>Client Feedback</h4>
+          <div class="card bg-light border border-secondary border-opacity-25 rounded-4 p-3 mb-3">
+            <div class="d-flex flex-wrap align-items-center justify-content-between gap-2 mb-2">
+              <div class="d-flex align-items-center gap-2">
+                <img id="review-img" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80" alt="Client" class="rounded-circle object-fit-cover" width="40" height="40">
+                <div>
+                  <h6 class="mb-0 fw-bold text-dark fs-7" id="review-name">Ayesha Malik</h6>
+                  <small class="text-muted" style="font-size: 11px;" id="review-time">2 days ago</small>
+                </div>
+              </div>
+              <div class="text-warning fs-7">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+              </div>
+            </div>
+            <p class="text-secondary fs-7 mb-0" id="review-text">"Extremely professional and punctual. Fixed our house wiring issue very cleanly in no time. Highly recommended!"</p>
+          </div>
+        </div>
+
       </div>
-
-      <!-- Column 2: Quick Links -->
-      <div class="col-lg-2 col-md-6 ps-lg-4">
-        <h5 class="fw-bold text-white mb-2 position-relative pb-2">Quick Links</h5>
-        <div class="bg-warning mb-3" style="width: 40px; height: 2px;"></div>
-        <ul class="list-unstyled d-flex flex-column gap-2">
-          <li><a href="index.html" class="footer-link">&ndash; Home</a></li>
-          <li><a href="#services" class="footer-link">&ndash; Services</a></li>
-          <li><a href="login.html" class="footer-link">&ndash; Login</a></li>
-          <li><a href="signup.html" class="footer-link">&ndash; Sign Up</a></li>
-        </ul>
-      </div>
-
-      <!-- Column 3: Contact Us -->
-      <div class="col-lg-3 col-md-6">
-        <h5 class="fw-bold text-white mb-2 position-relative pb-2">Contact Us</h5>
-        <div class="bg-warning mb-3" style="width: 40px; height: 2px;"></div>
-        <p class="text-secondary mb-2 fs-7">📍 Karachi, Pakistan</p>
-        <p class="text-secondary mb-2 fs-7">📧 support@quickserve.com</p>
-        <p class="text-secondary fs-7">📞 +92 300 1234567</p>
-      </div>
-
-      <!-- Column 4: Newsletter Box (Subscribe Input) -->
-<!-- Newsletter Column -->
-<div class="col-lg-4 col-md-6">
-  <h5 class="fw-bold text-white mb-2 position-relative pb-2">Newsletter</h5>
-  <div class="bg-warning mb-3" style="width: 40px; height: 2px;"></div>
-  <p class="text-secondary fs-7 mb-3">Subscribe to get updates on local services and special discounts.</p>
-  
-  <!-- Interactive Animated Subscribe Group -->
-  <div class="newsletter-wrapper d-flex align-items-center mt-4 rounded-4 bg-transparent p-0">
-    <input type="email" class="form-control bg-transparent text-white shadow-none ps-3 border-0 py-3 fs-7" placeholder="Your Email Here...">
-    <button class="btn btn-subscribe-animated px-4 py-3 fw-bold text-nowrap rounded-4 rounded-start-0">Subscribe &raquo;</button>
-  </div>
-</div>
-
     </div>
+  </section>
 
-    <hr class="border-secondary my-4">
-
-    <!-- Bottom Copyright -->
-    <div class="d-flex flex-column flex-sm-row justify-content-between align-items-center gap-2">
-      <p class="text-secondary fs-7 mb-0">&copy; 2026 QuickServe. All rights reserved.</p>
-      <div class="d-flex gap-3">
-        <a href="#" class="text-secondary fs-7 text-decoration-none">Privacy Policy</a>
-        <a href="#" class="text-secondary fs-7 text-decoration-none">Terms of Service</a>
+  <!-- Booking Modal -->
+  <div class="modal fade" id="bookingModal" tabindex="-1" aria-labelledby="bookingModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content bg-slate text-white border border-secondary shadow-lg">
+        <div class="modal-header border-bottom border-secondary">
+          <h5 class="modal-title fw-bold text-warning" id="bookingModalLabel">Book Service Request</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form id="bookingForm">
+            <div class="mb-3">
+              <label class="form-label text-light fs-7">Service Date</label>
+              <input type="date" id="bookDate" class="form-control bg-dark text-white border-secondary" required>
+            </div>
+            <div class="mb-3">
+              <label class="form-label text-light fs-7">Preferred Time</label>
+              <input type="time" id="bookTime" class="form-control bg-dark text-white border-secondary" required>
+            </div>
+            <div class="mb-3">
+              <label class="form-label text-light fs-7">Your Location / Address</label>
+              <input type="text" id="bookLocation" class="form-control bg-dark text-white border-secondary" placeholder="e.g. Gulshan-e-Iqbal, Karachi" required>
+            </div>
+            <div class="mb-3">
+              <label class="form-label text-light fs-7">Service Details / Work Description</label>
+              <textarea id="bookDesc" class="form-control bg-dark text-white border-secondary" rows="3" placeholder="Describe the issue briefly..."></textarea>
+            </div>
+            <button type="submit" class="btn btn-warning w-100 fw-bold py-2 mt-2">Confirm & Send Booking</button>
+          </form>
+        </div>
       </div>
     </div>
   </div>
-</footer>
-<!-- Footer End -->
 
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.min.js" integrity="sha384-G/EV+4j2dNv+tEPo3++6LCgdCROaejBqfUeNjuKAiuXbjrxilcCdDz6ZAVfHWe1Y" crossorigin="anonymous"></script>
-    <script type="module"  src="./app.js"></script>
+  <!-- Footer -->
+  <footer class="bg-slate text-light pt-5 pb-4 border-top border-secondary">
+    <div class="container">
+      <div class="row g-4 mb-5">
+        
+        <!-- Column 1 -->
+        <div class="col-12 col-lg-3 col-md-6">
+          <a class="navbar-brand fw-bold fs-3 d-flex align-items-center gap-2 mb-3" href="index.html">
+            <span class="bg-warning text-dark px-2 py-1 rounded-3 fs-4 shadow-sm">⚡</span>
+            <span class="text-white">Quick<span class="text-warning">Serve</span></span>
+          </a>
+          <p class="text-secondary fs-7 mb-4">QuickServe connects you with verified local service professionals quickly and hassle-free.</p>
+          
+          <div class="d-flex gap-2">
+            <a href="#" class="social-icon facebook rounded-circle d-flex align-items-center justify-content-center text-decoration-none text-light bg-dark" style="width:35px; height:35px;">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#" class="social-icon whatsapp rounded-circle d-flex align-items-center justify-content-center text-decoration-none text-light bg-dark" style="width:35px; height:35px;">
+              <i class="fab fa-whatsapp"></i>
+            </a>
+            <a href="#" class="social-icon instagram rounded-circle d-flex align-items-center justify-content-center text-decoration-none text-light bg-dark" style="width:35px; height:35px;">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="#" class="social-icon youtube rounded-circle d-flex align-items-center justify-content-center text-decoration-none text-light bg-dark" style="width:35px; height:35px;">
+              <i class="fab fa-youtube"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Column 2 -->
+        <div class="col-12 col-lg-2 col-md-6 ps-lg-4">
+          <h5 class="fw-bold text-white mb-2 position-relative pb-2">Quick Links</h5>
+          <div class="bg-warning mb-3" style="width: 40px; height: 2px;"></div>
+          <ul class="list-unstyled d-flex flex-column gap-2">
+            <li><a href="index.html" class="footer-link text-decoration-none text-secondary">&ndash; Home</a></li>
+            <li><a href="#services" class="footer-link text-decoration-none text-secondary">&ndash; Services</a></li>
+            <li><a href="login.html" class="footer-link text-decoration-none text-secondary">&ndash; Login</a></li>
+            <li><a href="signup.html" class="footer-link text-decoration-none text-secondary">&ndash; Sign Up</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 3 -->
+        <div class="col-12 col-lg-3 col-md-6">
+          <h5 class="fw-bold text-white mb-2 position-relative pb-2">Contact Us</h5>
+          <div class="bg-warning mb-3" style="width: 40px; height: 2px;"></div>
+          <p class="text-secondary mb-2 fs-7"><i class="fas fa-map-marker-alt text-warning me-2"></i>Karachi, Pakistan</p>
+          <p class="text-secondary mb-2 fs-7"><i class="fas fa-envelope text-warning me-2"></i>support@quickserve.com</p>
+          <p class="text-secondary fs-7"><i class="fas fa-phone text-warning me-2"></i>+92 300 1234567</p>
+        </div>
+
+        <!-- Column 4 -->
+        <div class="col-12 col-lg-4 col-md-6">
+          <h5 class="fw-bold text-white mb-2 position-relative pb-2">Newsletter</h5>
+          <div class="bg-warning mb-3" style="width: 40px; height: 2px;"></div>
+          <p class="text-secondary fs-7 mb-3">Subscribe to get updates on local services and special discounts.</p>
+          
+          <div class="d-flex flex-column flex-sm-row gap-2 mt-3">
+            <input type="email" class="form-control bg-dark text-white border-secondary shadow-none py-2 fs-7" placeholder="Your Email Here...">
+            <button class="btn btn-warning fw-bold text-nowrap px-4 py-2 text-dark">Subscribe &raquo;</button>
+          </div>
+        </div>
+
+      </div>
+
+      <hr class="border-secondary my-4">
+
+      <div class="d-flex flex-column flex-sm-row justify-content-between align-items-center gap-2 text-center text-sm-start">
+        <p class="text-secondary fs-7 mb-0">&copy; 2026 QuickServe. All rights reserved.</p>
+        <div class="d-flex gap-3">
+          <a href="#" class="text-secondary fs-7 text-decoration-none">Privacy Policy</a>
+          <a href="#" class="text-secondary fs-7 text-decoration-none">Terms of Service</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.min.js" integrity="sha384-G/EV+4j2dNv+tEPo3++6LCgdCROaejBqfUeNjuKAiuXbjrxilcCdDz6ZAVfHWe1Y" crossorigin="anonymous"></script>
+  <script type="module" src="./app.js"></script>
 </body>
 </html>
