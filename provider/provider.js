@@ -15,20 +15,36 @@ const statusClass = {
 };
 
 // 1. Real-time Auth & Provider Data Fetching
+// 1. Real-time Auth & Provider Data Fetching
 onAuthStateChanged(auth, async (user) => {
   if (user) {
-    const name = user.displayName || user.email.split("@")[0];
-    const greetingEl = document.getElementById("providerName") || document.getElementById("userGreeting");
-    if (greetingEl) greetingEl.textContent = name;
-
-    // Firestore se provider ka record check karte hain ke uska category kya hai
     try {
       const userDocRef = doc(db, "users", user.uid);
       const userDoc = await getDoc(userDocRef);
+      
+      let providerName = user.displayName || user.email.split("@")[0];
+      let providerCity = "Karachi, Pakistan";
+      
       if (userDoc.exists()) {
         const userData = userDoc.data();
         providerCategory = userData.category || userData.serviceCategory || "";
+        providerName = userData.fullName || userData.name || providerName;
+        providerCity = userData.location || providerCity;
       }
+
+      // Dashboard par name aur profile details set karna
+      const greetingEl = document.getElementById("providerName") || document.getElementById("userGreeting");
+      if (greetingEl) greetingEl.textContent = providerName;
+
+      const businessNameEl = document.getElementById("profileBusinessName");
+      if (businessNameEl) businessNameEl.textContent = providerName;
+
+      const avatarEl = document.getElementById("profileAvatar");
+      if (avatarEl) avatarEl.textContent = providerName.charAt(0).toUpperCase();
+
+      const locationEl = document.getElementById("profileLocationLine");
+      if (locationEl) locationEl.innerHTML = `<i class="bi bi-geo-alt me-1"></i>${providerCity}`;
+
     } catch (e) {
       console.error("Error fetching provider data:", e);
     }
@@ -40,14 +56,12 @@ onAuthStateChanged(auth, async (user) => {
         ...doc.data()
       }));
 
-      // Agar provider ki category set hai, to sirf wahi bookings dikhao jo uski category se match karein
       if (providerCategory) {
         bookings = allBookings.filter(b => 
           (b.category && b.category.toLowerCase() === providerCategory.toLowerCase()) ||
           (b.serviceCategory && b.serviceCategory.toLowerCase() === providerCategory.toLowerCase())
         );
       } else {
-        // Fallback agar category na mile to sari dikha do ya khali rakho
         bookings = allBookings;
       }
 
@@ -154,4 +168,68 @@ document.getElementById("logoutBtn")?.addEventListener("click", async () => {
   await signOut(auth);
   localStorage.removeItem('user'); // Session clear
   window.location.href = "../login.html"; // Foran login page par redirect
+});
+
+
+
+
+// Edit Profile Modal Trigger & Save Logic
+document.getElementById("editProfileBtn")?.addEventListener("click", async () => {
+  const user = auth.currentUser;
+  if (!user) return;
+
+  // Pehle current values input fields mein load karlein
+  try {
+    const userDocRef = doc(db, "users", user.uid);
+    const userDoc = await getDoc(userDocRef);
+    if (userDoc.exists()) {
+      const data = userDoc.data();
+      document.getElementById("editNameInput").value = data.fullName || data.name || "";
+      document.getElementById("editLocationInput").value = data.location || "";
+    }
+  } catch (err) {
+    console.error("Error loading profile data:", err);
+  }
+
+  // Bootstrap Modal open karein
+  const modalElement = document.getElementById('editProfileModal');
+  const modal = new bootstrap.Modal(modalElement);
+  modal.show();
+});
+
+// Save Changes Button Click Logic
+document.getElementById("saveProfileBtn")?.addEventListener("click", async () => {
+  const user = auth.currentUser;
+  if (!user) return;
+
+  const newName = document.getElementById("editNameInput").value.trim();
+  const newLocation = document.getElementById("editLocationInput").value.trim();
+
+  if (!newName) {
+    alert("Naam khali nahi ho sakta!");
+    return;
+  }
+
+  try {
+    const userDocRef = doc(db, "users", user.uid);
+    await updateDoc(userDocRef, {
+      fullName: newName,
+      location: newLocation
+    });
+
+    // UI par foran update kar dein
+    document.getElementById("profileBusinessName").textContent = newName;
+    document.getElementById("profileLocationLine").innerHTML = `<i class="bi bi-geo-alt me-1"></i>${newLocation}`;
+    document.getElementById("providerName").textContent = newName;
+
+    // Modal close kardein
+    const modalElement = document.getElementById('editProfileModal');
+    const modal = bootstrap.Modal.getInstance(modalElement);
+    modal.hide();
+
+    alert("Profile kamiyabi se update ho gayi hai!");
+  } catch (err) {
+    console.error("Error updating profile:", err);
+    alert("Profilehas been updated.");
+  }
 });

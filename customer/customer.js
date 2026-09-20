@@ -97,3 +97,6 @@ document.getElementById("logoutBtn")?.addEventListener("click", async () => {
   localStorage.removeItem('user'); // Session clear
   window.location.href = "../login.html"; // Foran login page par redirect
 });
+
+
+
