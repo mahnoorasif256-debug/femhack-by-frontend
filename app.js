@@ -47,14 +47,14 @@ document.addEventListener("DOMContentLoaded", () => {
   const browseAllText = document.getElementById("browseAllText");
   let lastMatchedCategory = "all";
 
-  function matchCategory(text) {
+function matchCategory(text) {
     if (text.includes("ac") || text.includes("hawa") || text.includes("cooling") || text.includes("gas") || text.includes("split")) {
       return "AC Technician";
     } else if (text.includes("light") || text.includes("fan") || text.includes("wire") || text.includes("trip") || text.includes("current") || text.includes("electric") || text.includes("switch")) {
       return "Electrician";
     } else if (text.includes("pipe") || text.includes("tap") || text.includes("leak") || text.includes("water") || text.includes("drain") || text.includes("tank")) {
       return "Plumber";
-    } else if (text.includes("door") || text.includes("wood") || text.includes("lock") || text.includes("chair") || text.includes("table") || text.includes("furniture")) {
+    } else if (text.includes("carpenter") || text.includes("door") || text.includes("wood") || text.includes("lock") || text.includes("chair") || text.includes("table") || text.includes("furniture")) {
       return "Carpenter";
     } else if (text.includes("paint") || text.includes("wall") || text.includes("color") || text.includes("damp")) {
       return "Painter";
