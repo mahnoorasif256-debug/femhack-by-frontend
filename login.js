@@ -12,6 +12,21 @@ import {
    getDoc
 } from "./firebase.config.js";
 
+function goAfterLogin(role) {
+  const redirect = sessionStorage.getItem('redirectAfterLogin');
+  if (redirect) {
+    sessionStorage.removeItem('redirectAfterLogin');
+    window.location.replace(redirect);
+    return;
+  }
+
+  if (role === 'provider') {
+    window.location.replace('./provider/provider.html');
+  } else {
+    window.location.replace('./customer/customer.html');
+  }
+}
+
 const login = async (e) => {
   e.preventDefault();
 
@@ -43,12 +58,7 @@ const login = async (e) => {
         }));
 
         alert("Logged in successfully!");
-
-        if (role === 'provider') {
-            window.location.replace('./provider/provider.html');
-        } else {
-            window.location.replace('./customer/customer.html');
-        }
+        goAfterLogin(role);
     } else {
         alert("User record not found in database!");
     }
@@ -61,7 +71,6 @@ const login = async (e) => {
 
 document.getElementById('loginForm')?.addEventListener('submit', login);
 
-// Forgot Password Logic
 const sendResetBtn = document.getElementById('sendResetBtn');
 if (sendResetBtn) {
     sendResetBtn.addEventListener('click', async () => {
@@ -74,7 +83,6 @@ if (sendResetBtn) {
         try {
             await sendPasswordResetEmail(auth, resetEmail);
             alert("Password reset link sent to your email!");
-            // Modal close karna
             const modalEl = document.getElementById('forgotPasswordModal');
             const modal = bootstrap.Modal.getInstance(modalEl);
             modal.hide();
@@ -85,7 +93,6 @@ if (sendResetBtn) {
     });
 }
 
-// Google Login button event listener
 const googleLoginBtn = document.getElementById('googleLoginBtn');
 if (googleLoginBtn) {
     googleLoginBtn.addEventListener('click', async () => {
@@ -105,6 +112,14 @@ if (googleLoginBtn) {
                 role = userData.role || 'customer';
                 name = userData.name || name;
             } else {
+                let chosenRole = prompt("Aap kis tarah account banana chahte hain? Type karein:\n1. customer\n2. provider", "customer");
+                
+                if (chosenRole && chosenRole.toLowerCase().includes('prov')) {
+                    role = 'provider';
+                } else {
+                    role = 'customer';
+                }
+
                 await setDoc(userDocRef, {
                     name: name,
                     email: user.email,
@@ -122,13 +137,8 @@ if (googleLoginBtn) {
                 profileImg: userDoc.exists() ? (userDoc.data().profileImg || '') : ''
             }));
 
-            alert("Logged in successfully!");
-
-            if (role === 'provider') {
-                window.location.replace('./provider/provider.html');
-            } else {
-                window.location.replace('./customer/customer.html');
-            }
+            alert(`Logged in successfully as ${role}!`);
+            goAfterLogin(role);
         } catch (error) {
             console.error("Google Login Error:", error.message);
             alert(error.message);

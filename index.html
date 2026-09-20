@@ -3,26 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>femhack</title>
+    <title>QuickServe - Home</title>
 
-             <!--fontawesome cdn  -->
+    <!-- FontAwesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Google Font: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
-
-    <!--  bootstrap cdn -->
-
-
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-
-<link rel="stylesheet" href="./style.css">
-
-
+    <!-- Bootstrap CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="./style.css">
 </head>
 <body>
   
-    
-
   <!-- Modern Navbar -->
   <nav class="navbar navbar-expand-lg sticky-top navbar-dark bg-slate py-3 border-bottom border-warning-subtle">
     <div class="container">
@@ -43,7 +39,10 @@
             <a class="nav-link fw-medium px-3 text-light" href="#services">Services</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link fw-medium px-3 text-light" href="#how-it-works">How It Works</a>
+            <a class="nav-link fw-medium px-3 text-light" href="#how-it-works"><i class="fa-solid fa-circle-question me-1 text-warning"></i>How It Works</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link fw-medium px-3 text-light" href="saved.html"><i class="fa-regular fa-heart me-1"></i>Saved</a>
           </li>
         </ul>
         <div class="d-flex align-items-center gap-3">
@@ -54,43 +53,108 @@
     </div>
   </nav>
 
-  <!-- Hero Section with Fixed Search Bar -->
-  <section class="py-5 bg-slate text-white text-center border-bottom border-secondary">
-    <div class="container py-4">
-      <h1 class="display-4 fw-bold mb-3">Find Expert <span class="text-warning">Local Services</span> Instantly</h1>
-      <p class="lead text-light opacity-75 mb-4">Book trusted plumbers, electricians, carpenters, and more with just a few clicks.</p>
+  <!-- Hero Section (Split Layout) -->
+  <section class="hero-split">
+    <div class="container">
+      <div class="row align-items-center gy-5">
 
-      <div class="row justify-content-center">
-        <div class="col-lg-10">
-          <div class="card p-3 shadow-lg border-0 bg-dark rounded-4">
-            <div class="row g-2 align-items-center">
-              <div class="col-md-5">
-                <input type="text" id="searchInput" class="form-control form-control-lg bg-slate text-white border-secondary shadow-none" placeholder="Search provider or service...">
+        <!-- Left Column -->
+        <div class="col-lg-6">
+          <span class="hero-tag">Local Services, Without The Hassle</span>
+          <h1 class="hero-heading">When something needs fixing, <span class="text-warning">find the right person fast.</span></h1>
+          <p class="hero-subtitle">Find trusted local professionals, compare services, book in minutes, and track the job from request to completion.</p>
+
+          <form class="hero-search-bar" role="search" id="heroSearchForm">
+            <i class="fa-solid fa-magnifying-glass hero-search-icon"></i>
+            <input type="text" id="heroSearchInput" class="hero-search-input" placeholder="What service do you need? e.g. Electrician">
+            <button type="submit" id="heroSearchBtn" class="hero-search-btn">Find a Professional</button>
+          </form>
+
+          <div class="hero-links">
+            <a href="#how-it-works" class="hero-link">How It Works (Step-by-Step)</a>
+            <span class="hero-link-dot">•</span>
+            <a href="#" class="hero-link" data-bs-toggle="modal" data-bs-target="#helpModal">Not sure what you need?</a>
+          </div>
+
+          <ul class="hero-bullets">
+            <li><i class="fa-solid fa-circle-check"></i> Local verified professionals</li>
+            <li><i class="fa-solid fa-circle-check"></i> Transparent starting prices</li>
+            <li><i class="fa-solid fa-circle-check"></i> Real-time booking status</li>
+          </ul>
+        </div>
+
+        <!-- Right Column (Updated Professional Overview Image) -->
+        <div class="col-lg-6">
+          <div class="hero-image-wrap">
+            <img src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=1000&q=80" alt="Professional Home Services Platform" class="hero-main-image">
+
+            <div class="hero-card hero-card--top">
+              <span class="hero-card-star">★</span>
+              <div class="hero-card-text">
+                <strong>4.9</strong>
+                <small>Top rated platform</small>
               </div>
-              <div class="col-md-4">
-                <select id="categoryFilter" class="form-select form-select-lg bg-slate text-white border-secondary shadow-none">
-                  <option value="all">All Categories</option>
-                  <option value="Plumber">Plumber</option>
-                  <option value="Electrician">Electrician</option>
-                  <option value="Carpenter">Carpenter</option>
-                  <option value="Cleaner">Home Cleaner</option>
-                  <option value="Painter">Painter</option>
-                  <option value="AC Technician">AC Technician</option>
-                </select>
+            </div>
+
+            <div class="hero-card hero-card--mid">
+              <span class="hero-card-dot"></span>
+              <div class="hero-card-text">
+                <strong>Verified Experts</strong>
+                <small>Karachi, Lahore &amp; Islamabad</small>
               </div>
-              <div class="col-md-3">
-                <button id="searchBtn" class="btn btn-warning btn-lg w-100 fw-bold rounded-3">Search</button>
+            </div>
+
+            <div class="hero-preview hero-preview--bottom">
+              <img src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=300&q=80" alt="Recent completed job">
+            </div>
+
+            <div class="hero-card hero-card--bottom">
+              <span class="hero-card-check"><i class="fa-solid fa-check"></i></span>
+              <div class="hero-card-text">
+                <strong>Booking accepted</strong>
+                <small>Instant Dispatch System</small>
               </div>
             </div>
           </div>
         </div>
+
       </div>
     </div>
   </section>
 
+  <!-- Hero Bottom Category Strip (Clickable Navigation) -->
+  <div class="bg-slate py-3 border-top border-bottom border-secondary">
+    <div class="container">
+      <div class="d-flex flex-wrap justify-content-center align-items-center gap-3 gap-lg-4 text-white">
+        <a href="#services" class="hero-strip-item text-decoration-none text-white fw-semibold d-flex align-items-center gap-2" onclick="filterAndScroll('Electrician')">
+          Electrical <i class="fa-solid fa-arrow-right text-warning fs-7"></i>
+        </a>
+        <span class="text-secondary d-none d-md-inline">•</span>
+        <a href="#services" class="hero-strip-item text-decoration-none text-white fw-semibold d-flex align-items-center gap-2" onclick="filterAndScroll('Plumber')">
+          Plumbing <i class="fa-solid fa-arrow-right text-warning fs-7"></i>
+        </a>
+        <span class="text-secondary d-none d-md-inline">•</span>
+        <a href="#services" class="hero-strip-item text-decoration-none text-white fw-semibold d-flex align-items-center gap-2" onclick="filterAndScroll('Cleaner')">
+          Cleaning <i class="fa-solid fa-arrow-right text-warning fs-7"></i>
+        </a>
+        <span class="text-secondary d-none d-md-inline">•</span>
+        <a href="#services" class="hero-strip-item text-decoration-none text-white fw-semibold d-flex align-items-center gap-2" onclick="filterAndScroll('AC Technician')">
+          AC Repair <i class="fa-solid fa-arrow-right text-warning fs-7"></i>
+        </a>
+        <span class="text-secondary d-none d-md-inline">•</span>
+        <a href="#services" class="hero-strip-item text-decoration-none text-white fw-semibold d-flex align-items-center gap-2" onclick="filterAndScroll('Painter')">
+          Painting <i class="fa-solid fa-arrow-right text-warning fs-7"></i>
+        </a>
+        <span class="text-secondary d-none d-md-inline">•</span>
+        <a href="#services" class="hero-strip-item text-decoration-none text-white fw-semibold d-flex align-items-center gap-2" onclick="filterAndScroll('Carpenter')">
+          Appliance Repair <i class="fa-solid fa-arrow-right text-warning fs-7"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+
   <!-- 6 Service Cards Section with Pictures -->
-<!-- 6 Service Cards Section with Pictures -->
-  <section class="py-5 bg-white">
+  <section id="services" class="py-5 bg-white">
     <div class="container py-3">
       
       <!-- Services Section Heading -->
@@ -99,214 +163,223 @@
         <p class="text-secondary fs-6">Explore top-rated professionals ready to help you with your daily home tasks.</p>
       </div>
 
-      <div class="row g-4 mb-5">
+      <!-- Services Filter Bar -->
+      <div class="services-filter">
+        <div class="services-filter-search">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input type="text" id="searchInput" placeholder="Search professionals">
+        </div>
+        <div class="services-filter-select">
+          <i class="fa-solid fa-sliders"></i>
+          <select id="categoryFilter">
+            <option value="all">All Categories</option>
+            <option value="Plumber">Plumber</option>
+            <option value="Electrician">Electrician</option>
+            <option value="Carpenter">Carpenter</option>
+            <option value="Cleaner">Home Cleaner</option>
+            <option value="Painter">Painter</option>
+            <option value="AC Technician">AC Technician</option>
+          </select>
+        </div>
+        <div class="services-filter-select">
+          <i class="fa-solid fa-arrow-down-wide-short"></i>
+          <select id="sortFilter">
+            <option value="rating">Sort by: Top Rated</option>
+            <option value="price-low">Price: Low to High</option>
+            <option value="price-high">Price: High to Low</option>
+          </select>
+        </div>
+      </div>
 
-        <!-- Card 1 -->
-        <div class="col-md-6 col-lg-4">
-          <div class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden card-provider">
+      <!-- Category Filter Buttons under search bar -->
+      <div class="d-flex flex-wrap gap-2 mb-4 justify-content-center" id="categoryButtonsGroup">
+        <button type="button" class="btn btn-sm btn-warning fw-semibold px-3 rounded-pill active-cat-btn" data-category="all">All</button>
+        <button type="button" class="btn btn-sm btn-outline-secondary fw-semibold px-3 rounded-pill" data-category="Electrician">Electrician</button>
+        <button type="button" class="btn btn-sm btn-outline-secondary fw-semibold px-3 rounded-pill" data-category="Plumber">Plumber</button>
+        <button type="button" class="btn btn-sm btn-outline-secondary fw-semibold px-3 rounded-pill" data-category="Carpenter">Carpenter</button>
+        <button type="button" class="btn btn-sm btn-outline-secondary fw-semibold px-3 rounded-pill" data-category="AC Technician">AC Technician</button>
+        <button type="button" class="btn btn-sm btn-outline-secondary fw-semibold px-3 rounded-pill" data-category="Painter">Painter</button>
+        <button type="button" class="btn btn-sm btn-outline-secondary fw-semibold px-3 rounded-pill" data-category="Cleaner">Cleaner</button>
+      </div>
+
+      <div class="row g-4 mb-5" id="providersGrid">
+
+        <!-- Card 1: Ahmed Electrical Services -->
+        <div class="col-md-6 col-lg-4" data-rating="4.9" data-price="1500">
+          <div class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden card-provider bg-white position-relative">
+            <div class="position-relative">
+              <img src="https://thumbs.dreamstime.com/b/young-electrical-engineer-protective-workware-repairing-connecting-wires-using-screw-driver-workplace-young-247556897.jpg" alt="Ahmed Electrical Services" class="w-100 object-fit-cover" style="height: 220px;">
+              <span class="position-absolute top-0 start-0 m-3 badge bg-dark text-white px-2.5 py-1.5 rounded-pill fw-bold shadow-sm">★ 4.9</span>
+              <button type="button" class="position-absolute top-0 end-0 m-3 btn btn-light rounded-circle p-2 d-flex align-items-center justify-content-center shadow-sm wishlist-btn border-0" style="width: 38px; height: 38px;" data-provider-id="1" onclick="toggleWishlist(this, 1)">
+                <i class="fa-regular fa-heart text-danger fs-6"></i>
+              </button>
+            </div>
             <div class="card-body p-4 d-flex flex-column justify-content-between">
               <div>
-                <div class="d-flex align-items-center gap-3 mb-3">
-                  <img src="https://images.unsplash.com/photo-1540569014015-19a7be504e3a?w=150&auto=format&fit=crop&q=80" alt="Ali Khan" class="rounded-circle object-fit-cover" width="60" height="60">
-                  <div>
-                    <h5 class="card-title fw-bold text-dark mb-1">Ali Khan</h5>
-                    <span class="badge bg-warning-subtle text-warning-emphasis px-2 py-1 rounded-pill fw-bold fs-7">Electrician</span>
-                  </div>
-                </div>
-                <p class="card-text text-secondary fs-7">Expert in home wiring, appliance installation & breaker repairs.</p>
-                <div class="d-flex justify-content-between align-items-center mb-3">
-                  <span class="text-warning fw-bold">★ 4.9 <small class="text-muted">(120)</small></span>
-                  <span class="fw-bold fs-5 text-dark">Rs. 1,500</span>
-                </div>
+                <h5 class="card-title fw-bold text-dark mb-1">Ahmed Electrical Services</h5>
+                <span class="text-warning fw-semibold fs-7 d-block mb-2">Electrician</span> <!-- Changed from green to yellow -->
+                <p class="text-secondary fs-8 mb-1"><i class="fa-solid fa-location-dot me-1 text-muted"></i> Gulshan-e-Iqbal, Karachi Pakistan</p>
+                <p class="text-secondary fs-8 mb-3"><i class="fa-solid fa-briefcase me-1 text-muted"></i> 8 yrs experience • <span class="text-warning fw-semibold">● Available</span></p>
               </div>
-              <a href="providers-details.html?id=1" class="button button-item w-100 justify-content-center text-decoration-none">
-                <span class="button-bg">
-                  <span class="button-bg-layers">
-                    <span class="button-bg-layer button-bg-layer-1 -purple"></span>
-                    <span class="button-bg-layer button-bg-layer-2 -turquoise"></span>
-                    <span class="button-bg-layer button-bg-layer-3 -yellow"></span>
-                  </span>
-                </span>
-                <span class="button-inner">
-                  <span class="button-inner-static">Book Service</span>
-                  <span class="button-inner-hover">Book Service</span>
-                </span>
-              </a>
+              <div class="pt-3 border-top border-light-subtle d-flex justify-content-between align-items-center">
+                <div>
+                  <small class="text-muted d-block fs-9 text-uppercase tracking-wider fw-semibold">Starting Price</small>
+                  <strong class="text-dark fs-5">Rs. 1,500</strong>
+                </div>
+                <a href="providers-details.html?id=1" class="text-dark text-decoration-none fw-bold fs-7 d-flex align-items-center gap-1 hover-warning">
+                  View Profile <i class="fa-solid fa-arrow-right fs-8"></i>
+                </a>
+              </div>
             </div>
           </div>
         </div>
 
-        <!-- Card 2 -->
-        <div class="col-md-6 col-lg-4">
-          <div class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden card-provider">
+        <!-- Card 2: Sparkle Home Cleaning -->
+        <div class="col-md-6 col-lg-4" data-rating="4.8" data-price="3200">
+          <div class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden card-provider bg-white position-relative">
+            <div class="position-relative">
+              <img src="https://cdn.create.vista.com/api/media/small/355770670/stock-photo-cropped-view-cleaner-rubber-gloves-holding-spray-bottle-cleaning-trolley" alt="Sparkle Home Cleaning" class="w-100 object-fit-cover" style="height: 220px;">
+              <span class="position-absolute top-0 start-0 m-3 badge bg-dark text-white px-2.5 py-1.5 rounded-pill fw-bold shadow-sm">★ 4.8</span>
+              <button type="button" class="position-absolute top-0 end-0 m-3 btn btn-light rounded-circle p-2 d-flex align-items-center justify-content-center shadow-sm wishlist-btn border-0" style="width: 38px; height: 38px;" data-provider-id="2" onclick="toggleWishlist(this, 2)">
+                <i class="fa-regular fa-heart text-danger fs-6"></i>
+              </button>
+            </div>
             <div class="card-body p-4 d-flex flex-column justify-content-between">
               <div>
-                <div class="d-flex align-items-center gap-3 mb-3">
-                  <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&auto=format&fit=crop&q=80" alt="Usman Ahmed" class="rounded-circle object-fit-cover" width="60" height="60">
-                  <div>
-                    <h5 class="card-title fw-bold text-dark mb-1">Usman Ahmed</h5>
-                    <span class="badge bg-primary-subtle text-primary px-2 py-1 rounded-pill fw-bold fs-7">Plumber</span>
-                  </div>
-                </div>
-                <p class="card-text text-secondary fs-7">Pipeline leakages, sanitary fittings, and water tank cleaning.</p>
-                <div class="d-flex justify-content-between align-items-center mb-3">
-                  <span class="text-warning fw-bold">★ 4.8 <small class="text-muted">(95)</small></span>
-                  <span class="fw-bold fs-5 text-dark">Rs. 1,200</span>
-                </div>
+                <h5 class="card-title fw-bold text-dark mb-1">Sparkle Home Cleaning</h5>
+                <span class="text-warning fw-semibold fs-7 d-block mb-2">Home Cleaner</span> <!-- Changed from green to yellow -->
+                <p class="text-secondary fs-8 mb-1"><i class="fa-solid fa-location-dot me-1 text-muted"></i> DHA Phase 6, Karachi</p>
+                <p class="text-secondary fs-8 mb-3"><i class="fa-solid fa-briefcase me-1 text-muted"></i> 5 yrs experience • <span class="text-warning fw-semibold">● Available</span></p>
               </div>
-              <a href="providers-details.html?id=2" class="button button-item w-100 justify-content-center text-decoration-none">
-                <span class="button-bg">
-                  <span class="button-bg-layers">
-                    <span class="button-bg-layer button-bg-layer-1 -purple"></span>
-                    <span class="button-bg-layer button-bg-layer-2 -turquoise"></span>
-                    <span class="button-bg-layer button-bg-layer-3 -yellow"></span>
-                  </span>
-                </span>
-                <span class="button-inner">
-                  <span class="button-inner-static">Book Service</span>
-                  <span class="button-inner-hover">Book Service</span>
-                </span>
-              </a>
+              <div class="pt-3 border-top border-light-subtle d-flex justify-content-between align-items-center">
+                <div>
+                  <small class="text-muted d-block fs-9 text-uppercase tracking-wider fw-semibold">Starting Price</small>
+                  <strong class="text-dark fs-5">Rs. 3,200</strong>
+                </div>
+                <a href="providers-details.html?id=2" class="text-dark text-decoration-none fw-bold fs-7 d-flex align-items-center gap-1 hover-warning">
+                  View Profile <i class="fa-solid fa-arrow-right fs-8"></i>
+                </a>
+              </div>
             </div>
           </div>
         </div>
 
-        <!-- Card 3 -->
-        <div class="col-md-6 col-lg-4">
-          <div class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden card-provider">
+        <!-- Card 3: AquaFlow Plumbing -->
+        <div class="col-md-6 col-lg-4" data-rating="4.7" data-price="2100">
+          <div class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden card-provider bg-white position-relative">
+            <div class="position-relative">
+              <img src="https://static.vecteezy.com/system/resources/thumbnails/078/028/915/small_2x/focused-skilled-male-plumber-wearing-a-uniform-meticulously-tightening-a-pipe-connection-on-a-sink-photo.jpeg" alt="AquaFlow Plumbing" class="w-100 object-fit-cover" style="height: 220px;">
+              <span class="position-absolute top-0 start-0 m-3 badge bg-dark text-white px-2.5 py-1.5 rounded-pill fw-bold shadow-sm">★ 4.7</span>
+              <button type="button" class="position-absolute top-0 end-0 m-3 btn btn-light rounded-circle p-2 d-flex align-items-center justify-content-center shadow-sm wishlist-btn border-0" style="width: 38px; height: 38px;" data-provider-id="3" onclick="toggleWishlist(this, 3)">
+                <i class="fa-regular fa-heart text-danger fs-6"></i>
+              </button>
+            </div>
             <div class="card-body p-4 d-flex flex-column justify-content-between">
               <div>
-                <div class="d-flex align-items-center gap-3 mb-3">
-                  <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&auto=format&fit=crop&q=80" alt="Tariq Mahmood" class="rounded-circle object-fit-cover" width="60" height="60">
-                  <div>
-                    <h5 class="card-title fw-bold text-dark mb-1">Tariq Mahmood</h5>
-                    <span class="badge bg-success-subtle text-success px-2 py-1 rounded-pill fw-bold fs-7">Carpenter</span>
-                  </div>
-                </div>
-                <p class="card-text text-secondary fs-7">Custom furniture repair, door fixing, and lock installation.</p>
-                <div class="d-flex justify-content-between align-items-center mb-3">
-                  <span class="text-warning fw-bold">★ 4.7 <small class="text-muted">(80)</small></span>
-                  <span class="fw-bold fs-5 text-dark">Rs. 2,000</span>
-                </div>
+                <h5 class="card-title fw-bold text-dark mb-1">AquaFlow Plumbing</h5>
+                <span class="text-warning fw-semibold fs-7 d-block mb-2">Plumber</span> <!-- Changed from green to yellow -->
+                <p class="text-secondary fs-8 mb-1"><i class="fa-solid fa-location-dot me-1 text-muted"></i> F-11, Islamabad</p>
+                <p class="text-secondary fs-8 mb-3"><i class="fa-solid fa-briefcase me-1 text-muted"></i> 11 yrs experience • <span class="text-warning fw-semibold">● Available</span></p>
               </div>
-              <a href="providers-details.html?id=3" class="button button-item w-100 justify-content-center text-decoration-none">
-                <span class="button-bg">
-                  <span class="button-bg-layers">
-                    <span class="button-bg-layer button-bg-layer-1 -purple"></span>
-                    <span class="button-bg-layer button-bg-layer-2 -turquoise"></span>
-                    <span class="button-bg-layer button-bg-layer-3 -yellow"></span>
-                  </span>
-                </span>
-                <span class="button-inner">
-                  <span class="button-inner-static">Book Service</span>
-                  <span class="button-inner-hover">Book Service</span>
-                </span>
-              </a>
+              <div class="pt-3 border-top border-light-subtle d-flex justify-content-between align-items-center">
+                <div>
+                  <small class="text-muted d-block fs-9 text-uppercase tracking-wider fw-semibold">Starting Price</small>
+                  <strong class="text-dark fs-5">Rs. 2,100</strong>
+                </div>
+                <a href="providers-details.html?id=3" class="text-dark text-decoration-none fw-bold fs-7 d-flex align-items-center gap-1 hover-warning">
+                  View Profile <i class="fa-solid fa-arrow-right fs-8"></i>
+                </a>
+              </div>
             </div>
           </div>
         </div>
 
-        <!-- Card 4 -->
-        <div class="col-md-6 col-lg-4">
-          <div class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden card-provider">
+        <!-- Card 4: Master Cool AC Care -->
+        <div class="col-md-6 col-lg-4" data-rating="4.9" data-price="2500">
+          <div class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden card-provider bg-white position-relative">
+            <div class="position-relative">
+              <img src="https://cdn.prod.website-files.com/672c783eb245d962f945af09/67eac2182e77b4216c818a9c_67d140629013ac13c634bc15_ACCRepair.webp" alt="Master Cool AC Care" class="w-100 object-fit-cover" style="height: 220px;">
+              <span class="position-absolute top-0 start-0 m-3 badge bg-dark text-white px-2.5 py-1.5 rounded-pill fw-bold shadow-sm">★ 4.9</span>
+              <button type="button" class="position-absolute top-0 end-0 m-3 btn btn-light rounded-circle p-2 d-flex align-items-center justify-content-center shadow-sm wishlist-btn border-0" style="width: 38px; height: 38px;" data-provider-id="4" onclick="toggleWishlist(this, 4)">
+                <i class="fa-regular fa-heart text-danger fs-6"></i>
+              </button>
+            </div>
             <div class="card-body p-4 d-flex flex-column justify-content-between">
               <div>
-                <div class="d-flex align-items-center gap-3 mb-3">
-                  <img src="https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?w=150&auto=format&fit=crop&q=80" alt="Bilal Raza" class="rounded-circle object-fit-cover" width="60" height="60">
-                  <div>
-                    <h5 class="card-title fw-bold text-dark mb-1">Bilal Raza</h5>
-                    <span class="badge bg-info-subtle text-info-emphasis px-2 py-1 rounded-pill fw-bold fs-7">AC Technician</span>
-                  </div>
-                </div>
-                <p class="card-text text-secondary fs-7">AC servicing, gas refilling, and inverter board repair.</p>
-                <div class="d-flex justify-content-between align-items-center mb-3">
-                  <span class="text-warning fw-bold">★ 4.9 <small class="text-muted">(150)</small></span>
-                  <span class="fw-bold fs-5 text-dark">Rs. 2,500</span>
-                </div>
+                <h5 class="card-title fw-bold text-dark mb-1">Master Cool AC Care</h5>
+                <span class="text-warning fw-semibold fs-7 d-block mb-2">AC Technician</span> <!-- Changed from green to yellow -->
+                <p class="text-secondary fs-8 mb-1"><i class="fa-solid fa-location-dot me-1 text-muted"></i> Clifton, Karachi</p>
+                <p class="text-secondary fs-8 mb-3"><i class="fa-solid fa-briefcase me-1 text-muted"></i> 7 yrs experience • <span class="text-warning fw-semibold">● Available</span></p>
               </div>
-              <a href="providers-details.html?id=4" class="button button-item w-100 justify-content-center text-decoration-none">
-                <span class="button-bg">
-                  <span class="button-bg-layers">
-                    <span class="button-bg-layer button-bg-layer-1 -purple"></span>
-                    <span class="button-bg-layer button-bg-layer-2 -turquoise"></span>
-                    <span class="button-bg-layer button-bg-layer-3 -yellow"></span>
-                  </span>
-                </span>
-                <span class="button-inner">
-                  <span class="button-inner-static">Book Service</span>
-                  <span class="button-inner-hover">Book Service</span>
-                </span>
-              </a>
+              <div class="pt-3 border-top border-light-subtle d-flex justify-content-between align-items-center">
+                <div>
+                  <small class="text-muted d-block fs-9 text-uppercase tracking-wider fw-semibold">Starting Price</small>
+                  <strong class="text-dark fs-5">Rs. 2,500</strong>
+                </div>
+                <a href="providers-details.html?id=4" class="text-dark text-decoration-none fw-bold fs-7 d-flex align-items-center gap-1 hover-warning">
+                  View Profile <i class="fa-solid fa-arrow-right fs-8"></i>
+                </a>
+              </div>
             </div>
           </div>
         </div>
 
-        <!-- Card 5 -->
-        <div class="col-md-6 col-lg-4">
-          <div class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden card-provider">
+        <!-- Card 5: Prime Woodworks -->
+        <div class="col-md-6 col-lg-4" data-rating="4.6" data-price="3000">
+          <div class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden card-provider bg-white position-relative">
+            <div class="position-relative">
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJnDCm0pK1KYkgx6wCizjDY9owQ5XgDIQBZeKH3zMQSmKkdAqaAQHA5e8&s=10" alt="Prime Woodworks" class="w-100 object-fit-cover" style="height: 220px;">
+              <span class="position-absolute top-0 start-0 m-3 badge bg-dark text-white px-2.5 py-1.5 rounded-pill fw-bold shadow-sm">★ 4.6</span>
+              <button type="button" class="position-absolute top-0 end-0 m-3 btn btn-light rounded-circle p-2 d-flex align-items-center justify-content-center shadow-sm wishlist-btn border-0" style="width: 38px; height: 38px;" data-provider-id="5" onclick="toggleWishlist(this, 5)">
+                <i class="fa-regular fa-heart text-danger fs-6"></i>
+              </button>
+            </div>
             <div class="card-body p-4 d-flex flex-column justify-content-between">
               <div>
-                <div class="d-flex align-items-center gap-3 mb-3">
-                  <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&auto=format&fit=crop&q=80" alt="Hamza Sheikh" class="rounded-circle object-fit-cover" width="60" height="60">
-                  <div>
-                    <h5 class="card-title fw-bold text-dark mb-1">Hamza Sheikh</h5>
-                    <span class="badge bg-danger-subtle text-danger px-2 py-1 rounded-pill fw-bold fs-7">Painter</span>
-                  </div>
-                </div>
-                <p class="card-text text-secondary fs-7">Interior & exterior wall painting, damp treatment & polishing.</p>
-                <div class="d-flex justify-content-between align-items-center mb-3">
-                  <span class="text-warning fw-bold">★ 4.6 <small class="text-muted">(60)</small></span>
-                  <span class="fw-bold fs-5 text-dark">Rs. 3,000</span>
-                </div>
+                <h5 class="card-title fw-bold text-dark mb-1">Prime Woodworks</h5>
+                <span class="text-warning fw-semibold fs-7 d-block mb-2">Carpenter</span> <!-- Changed from green to yellow -->
+                <p class="text-secondary fs-8 mb-1"><i class="fa-solid fa-location-dot me-1 text-muted"></i> Johar Town, Lahore</p>
+                <p class="text-secondary fs-8 mb-3"><i class="fa-solid fa-briefcase me-1 text-muted"></i> 10 yrs experience • <span class="text-warning fw-semibold">● Available</span></p>
               </div>
-              <a href="providers-details.html?id=5" class="button button-item w-100 justify-content-center text-decoration-none">
-                <span class="button-bg">
-                  <span class="button-bg-layers">
-                    <span class="button-bg-layer button-bg-layer-1 -purple"></span>
-                    <span class="button-bg-layer button-bg-layer-2 -turquoise"></span>
-                    <span class="button-bg-layer button-bg-layer-3 -yellow"></span>
-                  </span>
-                </span>
-                <span class="button-inner">
-                  <span class="button-inner-static">Book Service</span>
-                  <span class="button-inner-hover">Book Service</span>
-                </span>
-              </a>
+              <div class="pt-3 border-top border-light-subtle d-flex justify-content-between align-items-center">
+                <div>
+                  <small class="text-muted d-block fs-9 text-uppercase tracking-wider fw-semibold">Starting Price</small>
+                  <strong class="text-dark fs-5">Rs. 3,000</strong>
+                </div>
+                <a href="providers-details.html?id=5" class="text-dark text-decoration-none fw-bold fs-7 d-flex align-items-center gap-1 hover-warning">
+                  View Profile <i class="fa-solid fa-arrow-right fs-8"></i>
+                </a>
+              </div>
             </div>
           </div>
         </div>
 
-        <!-- Card 6 -->
-        <div class="col-md-6 col-lg-4">
-          <div class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden card-provider">
+        <!-- Card 6: Artistic Wall Painters -->
+        <div class="col-md-6 col-lg-4" data-rating="4.8" data-price="1800">
+          <div class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden card-provider bg-white position-relative">
+            <div class="position-relative">
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRFEreicgQqzaaZv3CKGGW1nHihq7Lz7zRvNg4o9uuShQ&s=10" alt="Artistic Wall Painters" class="w-100 object-fit-cover" style="height: 220px;">
+              <span class="position-absolute top-0 start-0 m-3 badge bg-dark text-white px-2.5 py-1.5 rounded-pill fw-bold shadow-sm">★ 4.8</span>
+              <button type="button" class="position-absolute top-0 end-0 m-3 btn btn-light rounded-circle p-2 d-flex align-items-center justify-content-center shadow-sm wishlist-btn border-0" style="width: 38px; height: 38px;" data-provider-id="6" onclick="toggleWishlist(this, 6)">
+                <i class="fa-regular fa-heart text-danger fs-6"></i>
+              </button>
+            </div>
             <div class="card-body p-4 d-flex flex-column justify-content-between">
               <div>
-                <div class="d-flex align-items-center gap-3 mb-3">
-                  <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=150&auto=format&fit=crop&q=80" alt="Shahid Iqbal" class="rounded-circle object-fit-cover" width="60" height="60">
-                  <div>
-                    <h5 class="card-title fw-bold text-dark mb-1">Shahid Iqbal</h5>
-                    <span class="badge bg-secondary-subtle text-secondary-emphasis px-2 py-1 rounded-pill fw-bold fs-7">Cleaner</span>
-                  </div>
-                </div>
-                <p class="card-text text-secondary fs-7">Deep home cleaning, sofa wash, and carpet vacuuming services.</p>
-                <div class="d-flex justify-content-between align-items-center mb-3">
-                  <span class="text-warning fw-bold">★ 4.8 <small class="text-muted">(110)</small></span>
-                  <span class="fw-bold fs-5 text-dark">Rs. 1,800</span>
-                </div>
+                <h5 class="card-title fw-bold text-dark mb-1">Artistic Wall Painters</h5>
+                <span class="text-warning fw-semibold fs-7 d-block mb-2">Painter</span> <!-- Changed from green to yellow -->
+                <p class="text-secondary fs-8 mb-1"><i class="fa-solid fa-location-dot me-1 text-muted"></i> Blue Area, Islamabad</p>
+                <p class="text-secondary fs-8 mb-3"><i class="fa-solid fa-briefcase me-1 text-muted"></i> 6 yrs experience • <span class="text-warning fw-semibold">● Available</span></p>
               </div>
-              <a href="providers-details.html?id=6" class="button button-item w-100 justify-content-center text-decoration-none">
-                <span class="button-bg">
-                  <span class="button-bg-layers">
-                    <span class="button-bg-layer button-bg-layer-1 -purple"></span>
-                    <span class="button-bg-layer button-bg-layer-2 -turquoise"></span>
-                    <span class="button-bg-layer button-bg-layer-3 -yellow"></span>
-                  </span>
-                </span>
-                <span class="button-inner">
-                  <span class="button-inner-static">Book Service</span>
-                  <span class="button-inner-hover">Book Service</span>
-                </span>
-              </a>
+              <div class="pt-3 border-top border-light-subtle d-flex justify-content-between align-items-center">
+                <div>
+                  <small class="text-muted d-block fs-9 text-uppercase tracking-wider fw-semibold">Starting Price</small>
+                  <strong class="text-dark fs-5">Rs. 1,800</strong>
+                </div>
+                <a href="providers-details.html?id=6" class="text-dark text-decoration-none fw-bold fs-7 d-flex align-items-center gap-1 hover-warning">
+                  View Profile <i class="fa-solid fa-arrow-right fs-8"></i>
+                </a>
+              </div>
             </div>
           </div>
         </div>
@@ -315,98 +388,172 @@
     </div>
   </section>
 
-
-
-
-<!-- Modern Sleek Footer Start -->
-<footer class="bg-slate text-light pt-5 pb-4 border-top border-secondary">
-  <div class="container">
-    <div class="row g-4 mb-5">
-      
-      <!-- Column 1: Brand & Social Icons -->
-      <div class="col-lg-3 col-md-6">
-        <a class="navbar-brand fw-bold fs-3 d-flex align-items-center gap-2 mb-3" href="index.html">
-          <span class="bg-warning text-dark px-2 py-1 rounded-3 fs-4 shadow-sm">⚡</span>
-          <span class="text-white">Quick<span class="text-warning">Serve</span></span>
-        </a>
-        <p class="text-secondary fs-7 mb-4">QuickServe connects you with verified local service professionals quickly and hassle-free.</p>
+  <!-- Not Sure What You Need Section (How It Works / Service Assistant Anchor) -->
+  <section id="how-it-works" class="py-5 bg-slate text-white border-top border-secondary">
+    <div class="container py-3">
+      <div class="row align-items-center justify-content-center g-4">
+        <div class="col-lg-7">
+          <span class="badge bg-warning text-dark px-3 py-1 rounded-pill fw-bold mb-3 fs-7">HOW IT WORKS</span>
+          <h2 class="fw-bold display-6 mb-3">Simple Steps to Get Things Done</h2>
+          <p class="text-secondary fs-6 mb-4">QuickServe makes finding reliable local help seamless. Use our assistant to match your issue or browse directly from our verified professionals list.</p>
+          
+          <ul class="list-unstyled d-flex flex-column gap-2 text-secondary fs-7">
+            <li><i class="fa-solid fa-circle-check text-warning me-2"></i> <strong>Step 1:</strong> Search or describe your home maintenance requirement.</li>
+            <li><i class="fa-solid fa-circle-check text-warning me-2"></i> <strong>Step 2:</strong> Compare verified local professionals by price, rating, and experience.</li>
+            <li><i class="fa-solid fa-circle-check text-warning me-2"></i> <strong>Step 3:</strong> Book instantly and track job progress seamlessly.</li>
+          </ul>
+        </div>
         
-        <!-- Social Icons -->
+        <div class="col-lg-5">
+          <div class="card bg-dark border border-secondary p-4 rounded-4 shadow-sm">
+            <h5 class="fw-bold text-white mb-3">Describe the problem</h5>
+            <div class="mb-2">
+              <textarea id="problemInput" class="form-control bg-slate text-white border-secondary shadow-none" rows="3" placeholder="Describe your problem, e.g. leaking tap"></textarea>
+            </div>
+            
+            <div id="problemError" class="text-danger fs-7 mb-2" style="display: none;"></div>
 
-        <div class="d-flex gap-2">
-  <a href="#" class="social-icon facebook rounded-circle d-flex align-items-center justify-content-center text-decoration-none">
-    <i class="fab fa-facebook-f"></i>
-  </a>
-  <a href="#" class="social-icon whatsapp rounded-circle d-flex align-items-center justify-content-center text-decoration-none">
-    <i class="fab fa-whatsapp"></i>
-  </a>
-  <a href="#" class="social-icon instagram rounded-circle d-flex align-items-center justify-content-center text-decoration-none">
-    <i class="fab fa-instagram"></i>
-  </a>
-  <a href="#" class="social-icon youtube rounded-circle d-flex align-items-center justify-content-center text-decoration-none">
-    <i class="fab fa-youtube"></i>
-  </a>
-</div>
+            <button type="button" id="findMyServiceBtn" class="btn btn-warning w-100 fw-bold py-2 shadow-sm mb-3">Find My Service</button>
+            
+            <div id="assistantResultBox" class="p-3 rounded-3 bg-slate border border-secondary" style="display: none;">
+              <div class="row g-2 mb-2">
+                <div class="col-6">
+                  <small class="text-secondary d-block fs-8">RECOMMENDED SERVICE</small>
+                  <strong id="resCategory" class="text-white fs-7">Browse all</strong>
+                </div>
+                <div class="col-6">
+                  <small class="text-secondary d-block fs-8">URGENCY</small>
+                  <strong id="resUrgency" class="text-white fs-7">Normal</strong>
+                </div>
+              </div>
+              <p class="text-secondary fs-8 mb-2" id="resReason">Why? Because we couldn't match your description to a single service, so browsing all professionals is the safest next step.</p>
+              <a href="#services" id="browseAllBtn" class="btn btn-warning btn-sm w-100 fw-bold text-dark text-decoration-none"><span id="browseAllText">Browse all professionals</span> <i class="fa-solid fa-arrow-right ms-1"></i></a>
+              <small class="text-secondary d-block text-center fs-8 mt-2">Category matching runs locally in your browser – no technical diagnosis, no data sent anywhere.</small>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Help Modal -->
+  <div class="modal fade" id="helpModal" tabindex="-1" aria-labelledby="helpModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content bg-slate text-white border border-warning">
+        <div class="modal-header border-secondary">
+          <h5 class="modal-title text-warning" id="helpModalLabel"><i class="fa-solid fa-circle-question me-2"></i> How It Works & Guide</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p class="text-secondary fs-7 mb-3">Don't worry! Here is a quick guide to help you choose the right category:</p>
+          <ul class="list-unstyled d-flex flex-column gap-2 fs-7">
+            <li>⚡ <strong>Electrician:</strong> For power trip, wiring issues, or installing fans/lights.</li>
+            <li>🔧 <strong>Plumber:</strong> For leaking taps, broken pipes, or tank installation.</li>
+            <li>🪚 <strong>Carpenter:</strong> For broken chairs, wooden door locks, or custom shelves.</li>
+            <li>❄️ <strong>AC Technician:</strong> For seasonal maintenance, cooling issues, or gas refilling.</li>
+            <li>🧹 <strong>Cleaner:</strong> For complete home deep cleaning or couch shampooing.</li>
+          </ul>
+        </div>
+        <div class="modal-footer border-secondary">
+          <button type="button" class="btn btn-warning btn-sm w-100 fw-bold" data-bs-dismiss="modal">Got it, browse services!</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-slate text-light pt-5 pb-4 border-top border-secondary">
+    <div class="container">
+      <div class="row g-4 mb-5">
+        <div class="col-lg-3 col-md-6">
+          <a class="navbar-brand fw-bold fs-3 d-flex align-items-center gap-2 mb-3" href="index.html">
+            <span class="bg-warning text-dark px-2 py-1 rounded-3 fs-4 shadow-sm">⚡</span>
+            <span class="text-white">Quick<span class="text-warning">Serve</span></span>
+          </a>
+          <p class="text-secondary fs-7 mb-4">QuickServe connects you with verified local service professionals quickly and hassle-free.</p>
+          
+          <div class="d-flex gap-2">
+            <a href="#" class="social-icon facebook rounded-circle d-flex align-items-center justify-content-center text-decoration-none"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="social-icon whatsapp rounded-circle d-flex align-items-center justify-content-center text-decoration-none"><i class="fab fa-whatsapp"></i></a>
+            <a href="#" class="social-icon instagram rounded-circle d-flex align-items-center justify-content-center text-decoration-none"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="social-icon youtube rounded-circle d-flex align-items-center justify-content-center text-decoration-none"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+
+        <div class="col-lg-2 col-md-6 ps-lg-4">
+          <h5 class="fw-bold text-white mb-2 position-relative pb-2">Quick Links</h5>
+          <div class="bg-warning mb-3" style="width: 40px; height: 2px;"></div>
+          <ul class="list-unstyled d-flex flex-column gap-2">
+            <li><a href="index.html" class="footer-link">&ndash; Home</a></li>
+            <li><a href="#services" class="footer-link">&ndash; Services</a></li>
+            <li><a href="#how-it-works" class="footer-link">&ndash; How It Works</a></li>
+            <li><a href="login.html" class="footer-link">&ndash; Login</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-3 col-md-6">
+          <h5 class="fw-bold text-white mb-2 position-relative pb-2">Contact Us</h5>
+          <div class="bg-warning mb-3" style="width: 40px; height: 2px;"></div>
+          <p class="text-secondary mb-2 fs-7">📍 Karachi, Pakistan</p>
+          <p class="text-secondary mb-2 fs-7">📧 support@quickserve.com</p>
+          <p class="text-secondary fs-7">📞 +92 300 1234567</p>
+        </div>
+
+        <div class="col-lg-4 col-md-6">
+          <h5 class="fw-bold text-white mb-2 position-relative pb-2">Newsletter</h5>
+          <div class="bg-warning mb-3" style="width: 40px; height: 2px;"></div>
+          <p class="text-secondary fs-7 mb-3">Subscribe to get updates on local services and special discounts.</p>
+          
+          <div class="newsletter-wrapper d-flex align-items-center mt-4 rounded-4 bg-transparent p-0">
+            <input type="email" class="form-control bg-transparent text-white shadow-none ps-3 border-0 py-3 fs-7" placeholder="Your Email Here...">
+            <button class="btn btn-subscribe-animated px-4 py-3 fw-bold text-nowrap rounded-4 rounded-start-0">Subscribe &raquo;</button>
+          </div>
+        </div>
       </div>
 
-      <!-- Column 2: Quick Links -->
-      <div class="col-lg-2 col-md-6 ps-lg-4">
-        <h5 class="fw-bold text-white mb-2 position-relative pb-2">Quick Links</h5>
-        <div class="bg-warning mb-3" style="width: 40px; height: 2px;"></div>
-        <ul class="list-unstyled d-flex flex-column gap-2">
-          <li><a href="index.html" class="footer-link">&ndash; Home</a></li>
-          <li><a href="#services" class="footer-link">&ndash; Services</a></li>
-          <li><a href="login.html" class="footer-link">&ndash; Login</a></li>
-          <li><a href="signup.html" class="footer-link">&ndash; Sign Up</a></li>
-        </ul>
-      </div>
+      <hr class="border-secondary my-4">
 
-      <!-- Column 3: Contact Us -->
-      <div class="col-lg-3 col-md-6">
-        <h5 class="fw-bold text-white mb-2 position-relative pb-2">Contact Us</h5>
-        <div class="bg-warning mb-3" style="width: 40px; height: 2px;"></div>
-        <p class="text-secondary mb-2 fs-7">📍 Karachi, Pakistan</p>
-        <p class="text-secondary mb-2 fs-7">📧 support@quickserve.com</p>
-        <p class="text-secondary fs-7">📞 +92 300 1234567</p>
+      <div class="d-flex flex-column flex-sm-row justify-content-between align-items-center gap-2">
+        <p class="text-secondary fs-7 mb-0">&copy; 2026 QuickServe. All rights reserved.</p>
+        <div class="d-flex gap-3">
+          <a href="#" class="text-secondary fs-7 text-decoration-none">Privacy Policy</a>
+          <a href="#" class="text-secondary fs-7 text-decoration-none">Terms of Service</a>
+        </div>
       </div>
+    </div>
+  </footer>
 
-      <!-- Column 4: Newsletter Box (Subscribe Input) -->
-<!-- Newsletter Column -->
-<div class="col-lg-4 col-md-6">
-  <h5 class="fw-bold text-white mb-2 position-relative pb-2">Newsletter</h5>
-  <div class="bg-warning mb-3" style="width: 40px; height: 2px;"></div>
-  <p class="text-secondary fs-7 mb-3">Subscribe to get updates on local services and special discounts.</p>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+  const user = JSON.parse(localStorage.getItem('user'));
+  const navAuthContainer = document.querySelector('#navbarContent .d-flex');
   
-  <!-- Interactive Animated Subscribe Group -->
-  <div class="newsletter-wrapper d-flex align-items-center mt-4 rounded-4 bg-transparent p-0">
-    <input type="email" class="form-control bg-transparent text-white shadow-none ps-3 border-0 py-3 fs-7" placeholder="Your Email Here...">
-    <button class="btn btn-subscribe-animated px-4 py-3 fw-bold text-nowrap rounded-4 rounded-start-0">Subscribe &raquo;</button>
-  </div>
-</div>
+  if (user && navAuthContainer) {
+    const firstName = user.name ? user.name.split(" ")[0] : "User";
+    const dashboardLink = user.role === 'provider' ? './provider/provider.html' : './customer/customer.html';
+    
+    navAuthContainer.innerHTML = `
+      <span class="text-white small align-self-center">Hi, ${firstName}</span>
+      <a href="${dashboardLink}" class="btn btn-warning rounded-pill px-3 fw-bold text-dark text-decoration-none">My Dashboard</a>
+      <a href="javascript:void(0);" id="navLogoutBtn" class="btn btn-outline-light btn-sm rounded-pill px-3">Logout</a>
+    `;
 
-    </div>
+    document.getElementById('navLogoutBtn')?.addEventListener('click', () => {
+      localStorage.removeItem('user');
+      window.location.reload();
+    });
+  }
+});
+</script>
 
-    <hr class="border-secondary my-4">
-
-    <!-- Bottom Copyright -->
-    <div class="d-flex flex-column flex-sm-row justify-content-between align-items-center gap-2">
-      <p class="text-secondary fs-7 mb-0">&copy; 2026 QuickServe. All rights reserved.</p>
-      <div class="d-flex gap-3">
-        <a href="#" class="text-secondary fs-7 text-decoration-none">Privacy Policy</a>
-        <a href="#" class="text-secondary fs-7 text-decoration-none">Terms of Service</a>
-      </div>
-    </div>
-  </div>
-</footer>
-<!-- Footer End -->
-
-
-
-
- 
-
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.min.js" integrity="sha384-G/EV+4j2dNv+tEPo3++6LCgdCROaejBqfUeNjuKAiuXbjrxilcCdDz6ZAVfHWe1Y" crossorigin="anonymous"></script>
-    <script type="module"  src="./app.js"></script>
+  <!-- Bootstrap JS & App Script -->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.min.js" integrity="sha384-G/EV+4j2dNv+tEPo3++6LCgdCROaejBqfUeNjuKAiuXbjrxilcCdDz6ZAVfHWe1Y" crossorigin="anonymous"></script>
+  <script type="module" src="./app.js"></script>
 </body>
 </html>
+
+
+
+

@@ -78,13 +78,13 @@
   <!-- Profile summary -->
   <div class="profile-card mb-4 d-flex flex-wrap gap-3 justify-content-between align-items-center">
     <div class="d-flex align-items-center gap-3">
-      <div class="profile-avatar">B</div>
+      <div class="profile-avatar" id="profileAvatar">P</div>
       <div>
-        <div class="fw-bold fs-5">Bilal Electric Works</div>
-        <div class="small text-white-50"><i class="bi bi-geo-alt me-1"></i>Gulshan-e-Iqbal, Karachi &nbsp;•&nbsp; Electrician &nbsp;•&nbsp; 6 yrs experience</div>
-        <div class="small mt-1">
-          <span class="text-warning"><i class="bi bi-star-fill"></i> 4.8 (132 reviews)</span>
-          &nbsp;•&nbsp; <span class="text-white-50">Rs. 800 - Rs. 2,500 / visit</span>
+        <div class="fw-bold fs-5" id="profileBusinessName">Loading your business...</div>
+        <div class="small text-white-50" id="profileLocationLine"><i class="bi bi-geo-alt me-1"></i>—</div>
+        <div class="small mt-1" id="profileRatingLine">
+          <span class="text-warning"><i class="bi bi-star-fill"></i> —</span>
+          &nbsp;•&nbsp; <span class="text-white-50">—</span>
         </div>
       </div>
     </div>
@@ -92,7 +92,7 @@
       <div class="d-flex align-items-center gap-2 small">
         <span class="avail-dot"></span> Available for bookings
       </div>
-      <button class="btn btn-outline-light btn-sm rounded-pill px-3" id="logoutBtn">Edit Profile</button>
+      <button class="btn btn-outline-light btn-sm rounded-pill px-3" id="editProfileBtn">Edit Profile</button>
     </div>
   </div>
 
@@ -143,9 +143,41 @@
   </div>
 </div>
 
+
+
+
+
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+  const user = JSON.parse(localStorage.getItem('user'));
+  const navAuthContainer = document.querySelector('#navbarContent .d-flex');
+  
+  if (user && navAuthContainer) {
+    const firstName = user.name ? user.name.split(" ")[0] : "User";
+    const dashboardLink = user.role === 'provider' ? './provider/provider.html' : './customer/customer.html';
+    
+    navAuthContainer.innerHTML = `
+      <span class="text-white small align-self-center">Hi, ${firstName}</span>
+      <a href="${dashboardLink}" class="btn btn-warning rounded-pill px-3 fw-bold text-dark text-decoration-none">My Dashboard</a>
+      <a href="javascript:void(0);" id="navLogoutBtn" class="btn btn-outline-light btn-sm rounded-pill px-3">Logout</a>
+    `;
+
+    document.getElementById('navLogoutBtn')?.addEventListener('click', () => {
+      localStorage.removeItem('user');
+      window.location.reload();
+    });
+  }
+});
+</script>
+
+
+
+
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
+<script src="../providers-data.js"></script>
 <script type="module" src="./provider.js"></script>
-</body>
 </body>
 </html>

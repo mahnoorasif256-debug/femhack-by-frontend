@@ -1,7 +1,6 @@
 import { auth, db } from "../firebase.config.js";
 import { onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/12.17.0/firebase-auth.js";
-import { collection, onSnapshot, doc, updateDoc } from "https://www.gstatic.com/firebasejs/12.17.0/firebase-firestore.js";
-
+import { collection, onSnapshot, query, where } from "https://www.gstatic.com/firebasejs/12.17.0/firebase-firestore.js";
 
 let bookings = [];
 let activeFilter = "all";
@@ -14,7 +13,7 @@ const statusClass = {
   "Rejected": "status-rejected"
 };
 
-// 1. Real-time Firestore Listener
+// 1. Real-time Firestore Listener (Filtered by logged-in Customer's UID)
 onAuthStateChanged(auth, (user) => {
   if (user) {
     const name = user.displayName || user.email.split("@")[0];
@@ -23,8 +22,9 @@ onAuthStateChanged(auth, (user) => {
     if (greetingEl) greetingEl.textContent = `Hi, ${name}`;
     if (avatarEl) avatarEl.textContent = name.charAt(0).toUpperCase();
 
-    // Fetch all bookings from Firestore
-    const q = collection(db, "bookings");
+    // Sirf is customer ki apni bookings fetch karne ke liye query
+    const q = query(collection(db, "bookings"), where("customerId", "==", user.uid));
+    
     onSnapshot(q, (snapshot) => {
       bookings = snapshot.docs.map(doc => ({
         id: doc.id,
@@ -91,8 +91,9 @@ document.getElementById("filterBar")?.addEventListener("click", (e) => {
   }
 });
 
-// 4. Logout Event
+// Logout Event (Customer & Provider dono ke liye)
 document.getElementById("logoutBtn")?.addEventListener("click", async () => {
   await signOut(auth);
-  window.location.href = "../login.html";
+  localStorage.removeItem('user'); // Session clear
+  window.location.href = "../login.html"; // Foran login page par redirect
 });

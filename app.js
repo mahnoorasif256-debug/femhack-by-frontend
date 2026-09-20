@@ -1,300 +1,262 @@
-// 1. ALL IMPORTS AT THE TOP
-import { db, doc, setDoc, auth, serverTimestamp } from "./firebase.config.js";
+document.addEventListener("DOMContentLoaded", () => {
+  const searchInput = document.getElementById("searchInput");
+  const categoryFilter = document.getElementById("categoryFilter");
+  const sortFilter = document.getElementById("sortFilter");
+  const providersGrid = document.getElementById("providersGrid");
+  const categoryButtons = document.querySelectorAll("#categoryButtonsGroup button");
+  const heroSearchForm = document.getElementById("heroSearchForm");
+  const heroSearchInput = document.getElementById("heroSearchInput");
+  
+  // Not Sure Section Elements
+  const problemInput = document.getElementById("problemInput");
+  const findMyServiceBtn = document.getElementById("findMyServiceBtn");
 
-// 2. PROVIDERS DATA OBJECT
-const providersData = {
-  1: {
-    name: "Ali Khan",
-    category: "Electrician",
-    rating: "4.9",
-    exp: "6+ Years Exp.",
-    location: "Karachi, Pakistan",
-    price: "Rs. 1,500",
-    img: "https://images.unsplash.com/photo-1540569014015-19a7be504e3a?w=400&auto=format&fit=crop&q=80",
-    desc: "Expert in home wiring, appliance installation & breaker repairs.",
-    badges: ["Home Wiring", "Appliance Installation", "Breaker Repairs"],
-    review: {
-      name: "Ayesha Malik",
-      time: "2 days ago",
-      img: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80",
-      text: "Extremely professional and punctual. Fixed our house wiring issue very cleanly in no time. Highly recommended!"
+  // Global function for Hero Strip items click (Scroll + Filter)
+  window.filterAndScroll = function(categoryName) {
+    if (categoryFilter) {
+      categoryFilter.value = categoryName;
     }
-  },
-  2: {
-    name: "Usman Ahmed",
-    category: "Plumber",
-    rating: "4.8",
-    exp: "5+ Years Exp.",
-    location: "Karachi, Pakistan",
-    price: "Rs. 1,200",
-    img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&auto=format&fit=crop&q=80",
-    desc: "Pipeline leakages, sanitary fittings, and water tank cleaning.",
-    badges: ["Pipeline Leakages", "Sanitary Fittings", "Water Tank Cleaning"],
-    review: {
-      name: "Zainab Khan",
-      time: "1 week ago",
-      img: "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=100&auto=format&fit=crop&q=80",
-      text: "Great plumber! Fixed the kitchen leakage efficiently and charged a very reasonable price."
-    }
-  },
-  3: {
-    name: "Tariq Mahmood",
-    category: "Carpenter",
-    rating: "4.7",
-    exp: "8+ Years Exp.",
-    location: "Karachi, Pakistan",
-    price: "Rs. 2,000",
-    img: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&auto=format&fit=crop&q=80",
-    desc: "Custom furniture repair, door fixing, and lock installation.",
-    badges: ["Furniture Repair", "Door Fixing", "Lock Installation"],
-    review: {
-      name: "Bilal Ahmed",
-      time: "3 days ago",
-      img: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=100&auto=format&fit=crop&q=80",
-      text: "Very skilled carpenter. Fixed our wooden main door lock smoothly. Excellent work."
-    }
-  },
-  4: {
-    name: "Bilal Raza",
-    category: "AC Technician",
-    rating: "4.9",
-    exp: "7+ Years Exp.",
-    location: "Karachi, Pakistan",
-    price: "Rs. 2,500",
-    img: "https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?w=400&auto=format&fit=crop&q=80",
-    desc: "AC servicing, gas refilling, and inverter board repair.",
-    badges: ["AC Servicing", "Gas Refilling", "Inverter Repair"],
-    review: {
-      name: "Farhan Ali",
-      time: "Yesterday",
-      img: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=100&auto=format&fit=crop&q=80",
-      text: "AC cooling was very low, he refilled the gas and serviced it properly. Now it works like brand new."
-    }
-  },
-  5: {
-    name: "Hamza Sheikh",
-    category: "Painter",
-    rating: "4.6",
-    exp: "4+ Years Exp.",
-    location: "Karachi, Pakistan",
-    price: "Rs. 3,000",
-    img: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&auto=format&fit=crop&q=80",
-    desc: "Interior & exterior wall painting, damp treatment & polishing.",
-    badges: ["Wall Painting", "Damp Treatment", "Polishing"],
-    review: {
-      name: "Sobia Rehman",
-      time: "5 days ago",
-      img: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=100&auto=format&fit=crop&q=80",
-      text: "Did a fantastic job with our living room accent wall. Clean and neat work!"
-    }
-  },
-  6: {
-    name: "Shahid Iqbal",
-    category: "Cleaner",
-    rating: "4.8",
-    exp: "5+ Years Exp.",
-    location: "Karachi, Pakistan",
-    price: "Rs. 1,800",
-    img: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=400&auto=format&fit=crop&q=80",
-    desc: "Deep home cleaning, sofa wash, and carpet vacuuming services.",
-    badges: ["Deep Cleaning", "Sofa Wash", "Carpet Vacuuming"],
-    review: {
-      name: "Sadia Noor",
-      time: "4 days ago",
-      img: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&auto=format&fit=crop&q=80",
-      text: "Very thorough cleaning service. The sofas look spotless after the wash."
-    }
-  }
-};
 
-// 3. RENDER FUNCTION
-// function renderProviderDetails() {
-//   const urlParams = new URLSearchParams(window.location.search);
-//   const providerId = urlParams.get("id") || "1";
-//   const data = providersData[providerId] || providersData[1];
-
-//   if (data) {
-//     const imgEl = document.getElementById("p-img");
-//     if (imgEl) imgEl.src = data.img;
-
-//     // document.getElementById("p-name")?.textContent = data.name;
-//     const nameEl = document.getElementById("p-name");
-// if (nameEl && data) {
-//   nameEl.textContent = data.name;
-// }
-//     document.getElementById("p-category")?.textContent = data.category;
-//     document.getElementById("p-rating")?.textContent = data.rating;
-//     document.getElementById("p-exp")?.textContent = data.exp;
-//     document.getElementById("p-location")?.textContent = data.location;
-//     document.getElementById("p-price")?.textContent = data.price;
-//     document.getElementById("p-desc")?.textContent = data.desc;
-
-//     // Review Section
-//     const reviewImg = document.getElementById("review-img");
-//     const reviewName = document.getElementById("review-name");
-//     const reviewTime = document.getElementById("review-time");
-//     const reviewText = document.getElementById("review-text");
-
-//     if (reviewImg) reviewImg.src = data.review.img;
-//     if (reviewName) reviewName.textContent = data.review.name;
-//     if (reviewTime) reviewTime.textContent = data.review.time;
-//     if (reviewText) reviewText.textContent = `"${data.review.text}"`;
-
-//     // Badges
-//     const badgesContainer = document.getElementById("p-badges");
-//     if (badgesContainer) {
-//       badgesContainer.innerHTML = data.badges
-//         .map(badge => `<span class="badge bg-slate text-warning border border-warning border-opacity-50 px-3 py-2 rounded-pill fs-7">${badge}</span>`)
-//         .join("");
-//     }
-//   }
-// }
-function renderProviderDetails() {
-  const urlParams = new URLSearchParams(window.location.search);
-  const providerId = urlParams.get("id") || "1";
-  const data = providersData[providerId] || providersData[1];
-
-  if (data) {
-    // Basic Details Safe Assignments
-    const imgEl = document.getElementById("p-img");
-    if (imgEl) imgEl.src = data.img;
-
-    const nameEl = document.getElementById("p-name");
-    if (nameEl) nameEl.textContent = data.name;
-
-    const catEl = document.getElementById("p-category");
-    if (catEl) catEl.textContent = data.category;
-
-    const ratingEl = document.getElementById("p-rating");
-    if (ratingEl) ratingEl.textContent = data.rating;
-
-    const expEl = document.getElementById("p-exp");
-    if (expEl) expEl.textContent = data.exp;
-
-    const locEl = document.getElementById("p-location");
-    if (locEl) locEl.textContent = data.location;
-
-    const priceEl = document.getElementById("p-price");
-    if (priceEl) priceEl.textContent = data.price;
-
-    const descEl = document.getElementById("p-desc");
-    if (descEl) descEl.textContent = data.desc;
-
-    // Review Section
-    const reviewImg = document.getElementById("review-img");
-    const reviewName = document.getElementById("review-name");
-    const reviewTime = document.getElementById("review-time");
-    const reviewText = document.getElementById("review-text");
-
-    if (reviewImg) reviewImg.src = data.review.img;
-    if (reviewName) reviewName.textContent = data.review.name;
-    if (reviewTime) reviewTime.textContent = data.review.time;
-    if (reviewText) reviewText.textContent = `"${data.review.text}"`;
-
-    // Badges
-    const badgesContainer = document.getElementById("p-badges");
-    if (badgesContainer) {
-      badgesContainer.innerHTML = data.badges
-        .map(badge => `<span class="badge bg-slate text-warning border border-warning border-opacity-50 px-3 py-2 rounded-pill fs-7">${badge}</span>`)
-        .join("");
-    }
-  }
-}
-// 4. SEARCH & FILTER LOGIC
-function filterProviders() {
-  const searchVal = (document.getElementById("searchInput")?.value || "").toLowerCase().trim();
-  const selectedCategory = (document.getElementById("categoryFilter")?.value || "all").toLowerCase().trim();
-  const providerCols = document.querySelectorAll(".card-provider");
-
-  providerCols.forEach((card) => {
-    const colParent = card.closest(".col-md-6") || card.parentElement;
-    const cardText = card.innerText.toLowerCase();
-    const categoryBadge = card.querySelector(".badge")?.innerText.toLowerCase() || "";
-
-    const matchesSearch = searchVal === "" || cardText.includes(searchVal);
-    const matchesCategory = selectedCategory === "all" || categoryBadge.includes(selectedCategory);
-
-    if (colParent) {
-      colParent.style.setProperty("display", matchesSearch && matchesCategory ? "block" : "none", "important");
-    }
-  });
-}
-
-// 5. BOOKING SUBMISSION LOGIC
-const handleBookingSubmit = async (e) => {
-  e.preventDefault();
-
-  const user = auth.currentUser;
-  if (!user) {
-    alert("Pehle account Login karein!");
-    window.location.href = "login.html";
-    return;
-  }
-
-  const urlParams = new URLSearchParams(window.location.search);
-  const providerId = urlParams.get("id") || "1";
-  const provider = providersData[providerId] || providersData[1];
-
-  const date = document.getElementById("bookDate")?.value;
-  const time = document.getElementById("bookTime")?.value;
-  const location = document.getElementById("bookLocation")?.value;
-  const description = document.getElementById("bookDesc")?.value;
-
-  if (!date || !time || !location) {
-    alert("Kripya tamam required fields fill karein!");
-    return;
-  }
-
-  const bookingId = `BK-${Date.now()}`;
-
-  try {
-    await setDoc(doc(db, "bookings", bookingId), {
-      bookingId: bookingId,
-      customerId: user.uid,
-      customerEmail: user.email,
-      providerId: providerId,
-      providerName: provider.name,
-      serviceCategory: provider.category,
-      price: provider.price,
-      date: date,
-      time: time,
-      location: location,
-      description: description || "",
-      status: "Pending",
-      review: null,
-      createdAt: serverTimestamp()
+    // Update Category Pills Active State
+    categoryButtons.forEach(btn => {
+      if (btn.dataset.category.toLowerCase() === categoryName.toLowerCase()) {
+        btn.className = "btn btn-sm btn-warning fw-semibold px-3 rounded-pill";
+      } else {
+        btn.className = "btn btn-sm btn-outline-secondary fw-semibold px-3 rounded-pill";
+      }
     });
 
-    alert(`Booking Request Successfully Sent! Booking ID: ${bookingId}`);
-    
-    const modalElement = document.getElementById('bookingModal');
-    if (modalElement && typeof bootstrap !== "undefined") {
-      const modal = bootstrap.Modal.getInstance(modalElement);
-      if (modal) modal.hide();
+    filterProviders();
+
+    const servicesSection = document.getElementById("services");
+    if (servicesSection) {
+      servicesSection.scrollIntoView({ behavior: "smooth" });
     }
+  };
 
-    window.location.href = "./customer/customer.html";
-  } catch (error) {
-    console.error("Booking Submission Error:", error);
-    alert("Booking Submit Nahi Ho Saki: " + error.message);
+  // "Not Sure What You Need" Keyword Matcher Logic
+  // Fix: pehle sirf result box ko update/reveal karte hain (jaise reference site mein hota hai),
+  // page ko turant #services par jump/scroll NAHI karte. Scroll sirf tab hota hai jab
+  // user khud "Browse ... professionals" button par click kare.
+  const problemError = document.getElementById("problemError");
+  const assistantResultBox = document.getElementById("assistantResultBox");
+  const resCategory = document.getElementById("resCategory");
+  const resUrgency = document.getElementById("resUrgency");
+  const resReason = document.getElementById("resReason");
+  const browseAllBtn = document.getElementById("browseAllBtn");
+  const browseAllText = document.getElementById("browseAllText");
+  let lastMatchedCategory = "all";
+
+  function matchCategory(text) {
+    if (text.includes("ac") || text.includes("hawa") || text.includes("cooling") || text.includes("gas") || text.includes("split")) {
+      return "AC Technician";
+    } else if (text.includes("light") || text.includes("fan") || text.includes("wire") || text.includes("trip") || text.includes("current") || text.includes("electric") || text.includes("switch")) {
+      return "Electrician";
+    } else if (text.includes("pipe") || text.includes("tap") || text.includes("leak") || text.includes("water") || text.includes("drain") || text.includes("tank")) {
+      return "Plumber";
+    } else if (text.includes("door") || text.includes("wood") || text.includes("lock") || text.includes("chair") || text.includes("table") || text.includes("furniture")) {
+      return "Carpenter";
+    } else if (text.includes("paint") || text.includes("wall") || text.includes("color") || text.includes("damp")) {
+      return "Painter";
+    } else if (text.includes("clean") || text.includes("dust") || text.includes("wash") || text.includes("sofa") || text.includes("carpet")) {
+      return "Cleaner";
+    }
+    return "all";
   }
-};
 
-// 6. INITIALIZATION & EVENT LISTENERS
-document.addEventListener("DOMContentLoaded", () => {
-  // Page-specific function call check
-  if (document.getElementById("p-name") || window.location.pathname.includes("providers-details.html")) {
-    renderProviderDetails();
+  function matchUrgency(text) {
+    const high = ["fire", "smoke", "flood", "danger", "emergency", "spark", "shock"];
+    const medium = ["not working", "stopped", "broken", "leak", "no water", "no power", "trip"];
+    if (high.some(w => text.includes(w))) return "High";
+    if (medium.some(w => text.includes(w))) return "Medium";
+    return "Normal";
   }
 
-  // Filter Listeners
-  document.getElementById("searchInput")?.addEventListener("input", filterProviders);
-  document.getElementById("categoryFilter")?.addEventListener("change", filterProviders);
-  document.getElementById("searchBtn")?.addEventListener("click", (e) => {
-    e.preventDefault();
+  if (findMyServiceBtn && problemInput) {
+    findMyServiceBtn.addEventListener("click", () => {
+      const text = problemInput.value.toLowerCase().trim();
+
+      if (text.length < 8) {
+        if (problemError) {
+          problemError.textContent = "Please describe the problem in a little more detail (at least 8 characters).";
+          problemError.style.display = "block";
+        }
+        if (assistantResultBox) assistantResultBox.style.display = "none";
+        return;
+      }
+
+      if (problemError) problemError.style.display = "none";
+
+      const matchedCategory = matchCategory(text);
+      const urgency = matchUrgency(text);
+      lastMatchedCategory = matchedCategory;
+
+      if (resCategory) resCategory.textContent = matchedCategory === "all" ? "Browse all" : matchedCategory;
+      if (resUrgency) resUrgency.textContent = urgency;
+      if (resReason) {
+        resReason.innerHTML = matchedCategory === "all"
+          ? '<strong>Why?</strong> Because we couldn\'t match your description to a single service, so browsing all professionals is the safest next step.'
+          : `<strong>Why?</strong> Because your description points to a ${matchedCategory.toLowerCase()} issue.`;
+      }
+      if (browseAllText) {
+        browseAllText.textContent = matchedCategory === "all"
+          ? "Browse all professionals"
+          : `Browse ${matchedCategory} professionals`;
+      }
+
+      // Sirf result box reveal karo, isi jagah par -- page ko jump mat karo.
+      if (assistantResultBox) assistantResultBox.style.display = "block";
+    });
+  }
+
+  // "Browse ... professionals" button - yahan explicitly click karne par filter + scroll hota hai
+  if (browseAllBtn) {
+    browseAllBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      window.filterAndScroll(lastMatchedCategory);
+    });
+  }
+
+  /* ============================
+     Saved / Wishlist Functionality
+     ============================ */
+  const SAVED_KEY = "quickserve_saved_providers";
+
+  function getSavedIds() {
+    try {
+      return JSON.parse(localStorage.getItem(SAVED_KEY)) || [];
+    } catch (e) {
+      return [];
+    }
+  }
+
+  function setSavedIds(ids) {
+    localStorage.setItem(SAVED_KEY, JSON.stringify(ids));
+  }
+
+  function setHeartState(btn, isSaved) {
+    const icon = btn.querySelector("i");
+    if (!icon) return;
+    if (isSaved) {
+      icon.classList.remove("fa-regular");
+      icon.classList.add("fa-solid");
+      btn.classList.add("wishlist-active");
+    } else {
+      icon.classList.remove("fa-solid");
+      icon.classList.add("fa-regular");
+      btn.classList.remove("wishlist-active");
+    }
+  }
+
+  // Global function used by heart buttons: onclick="toggleWishlist(this, providerId)"
+  window.toggleWishlist = function (btn, providerId) {
+    const id = Number(providerId);
+    let saved = getSavedIds();
+
+    if (saved.includes(id)) {
+      saved = saved.filter(x => x !== id);
+      setHeartState(btn, false);
+    } else {
+      saved.push(id);
+      setHeartState(btn, true);
+    }
+    setSavedIds(saved);
+  };
+
+  // Page load par pehle se saved providers ke hearts ko fill karke dikhana
+  (function initSavedHearts() {
+    const saved = getSavedIds();
+    document.querySelectorAll(".wishlist-btn[data-provider-id]").forEach(btn => {
+      const id = Number(btn.dataset.providerId);
+      setHeartState(btn, saved.includes(id));
+    });
+  })();
+
+  // Filter & Sort Logic Function
+  function filterProviders() {
+    if (!providersGrid) return;
+    
+    const cards = Array.from(providersGrid.children);
+    const searchTerm = searchInput ? searchInput.value.toLowerCase().trim() : "";
+    const selectedCategory = categoryFilter ? categoryFilter.value : "all";
+    const sortBy = sortFilter ? sortFilter.value : "rating";
+
+    cards.forEach(card => {
+      // Card ke andar jo elements hain unhi se text lein (null hone par crash na ho)
+      const title = (card.querySelector(".card-title")?.textContent || "").toLowerCase();
+      // Category ka text "span.d-block" mein hai (".badge" to rating "★ 4.9" ka hai)
+      const category = (card.querySelector(".card-body span.d-block")?.textContent || "").toLowerCase();
+      // Pehla <p> location hai (jaise "Gulshan-e-Iqbal, Karachi")
+      const location = (card.querySelector(".card-body p")?.textContent || "").toLowerCase();
+
+      const matchesSearch = title.includes(searchTerm) || category.includes(searchTerm) || location.includes(searchTerm);
+      const matchesCategory = selectedCategory === "all" || category.includes(selectedCategory.toLowerCase());
+
+      card.style.display = (matchesSearch && matchesCategory) ? "" : "none";
+    });
+
+    const visibleCards = cards.filter(card => card.style.display !== "none");
+
+    visibleCards.sort((a, b) => {
+      const ratingA = parseFloat(a.dataset.rating);
+      const ratingB = parseFloat(b.dataset.rating);
+      const priceA = parseInt(a.dataset.price);
+      const priceB = parseInt(b.dataset.price);
+
+      if (sortBy === "rating") {
+        return ratingB - ratingA;
+      } else if (sortBy === "price-low") {
+        return priceA - priceB;
+      } else if (sortBy === "price-high") {
+        return priceB - priceA;
+      }
+      return 0;
+    });
+
+    visibleCards.forEach(card => providersGrid.appendChild(card));
+  }
+
+  // Event Listeners
+  if (searchInput) searchInput.addEventListener("input", filterProviders);
+  if (categoryFilter) categoryFilter.addEventListener("change", (e) => {
+    const val = e.target.value;
+    categoryButtons.forEach(btn => {
+      if (btn.dataset.category.toLowerCase() === val.toLowerCase()) {
+        btn.className = "btn btn-sm btn-warning fw-semibold px-3 rounded-pill";
+      } else {
+        btn.className = "btn btn-sm btn-outline-secondary fw-semibold px-3 rounded-pill";
+      }
+    });
     filterProviders();
   });
 
-  // Booking Form Listener
-  document.getElementById("bookingForm")?.addEventListener("submit", handleBookingSubmit);
+  if (sortFilter) sortFilter.addEventListener("change", filterProviders);
+
+  categoryButtons.forEach(button => {
+    button.addEventListener("click", () => {
+      categoryButtons.forEach(btn => {
+        btn.className = "btn btn-sm btn-outline-secondary fw-semibold px-3 rounded-pill";
+      });
+      button.className = "btn btn-sm btn-warning fw-semibold px-3 rounded-pill";
+
+      const cat = button.dataset.category;
+      if (categoryFilter) categoryFilter.value = cat;
+      filterProviders();
+    });
+  });
+
+  if (heroSearchForm && heroSearchInput) {
+    heroSearchForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const query = heroSearchInput.value.trim();
+      if (searchInput) searchInput.value = query;
+      
+      filterProviders();
+
+      const servicesSection = document.getElementById("services");
+      if (servicesSection) {
+        servicesSection.scrollIntoView({ behavior: "smooth" });
+      }
+    });
+  }
 });

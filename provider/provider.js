@@ -1,9 +1,10 @@
 import { auth, db } from "../firebase.config.js";
 import { onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/12.17.0/firebase-auth.js";
-import { collection, onSnapshot, doc, updateDoc } from "https://www.gstatic.com/firebasejs/12.17.0/firebase-firestore.js";
+import { collection, onSnapshot, doc, updateDoc, getDoc } from "https://www.gstatic.com/firebasejs/12.17.0/firebase-firestore.js";
 
 let bookings = [];
 let activeFilter = "all";
+let providerCategory = "";
 
 const statusClass = {
   "Pending": "status-pending",
@@ -13,19 +14,43 @@ const statusClass = {
   "Rejected": "status-rejected"
 };
 
-// 1. Real-time Auth & Bookings Fetch
-onAuthStateChanged(auth, (user) => {
+// 1. Real-time Auth & Provider Data Fetching
+onAuthStateChanged(auth, async (user) => {
   if (user) {
     const name = user.displayName || user.email.split("@")[0];
     const greetingEl = document.getElementById("providerName") || document.getElementById("userGreeting");
     if (greetingEl) greetingEl.textContent = name;
 
+    // Firestore se provider ka record check karte hain ke uska category kya hai
+    try {
+      const userDocRef = doc(db, "users", user.uid);
+      const userDoc = await getDoc(userDocRef);
+      if (userDoc.exists()) {
+        const userData = userDoc.data();
+        providerCategory = userData.category || userData.serviceCategory || "";
+      }
+    } catch (e) {
+      console.error("Error fetching provider data:", e);
+    }
+
     const q = collection(db, "bookings");
     onSnapshot(q, (snapshot) => {
-      bookings = snapshot.docs.map(doc => ({
+      let allBookings = snapshot.docs.map(doc => ({
         id: doc.id,
         ...doc.data()
       }));
+
+      // Agar provider ki category set hai, to sirf wahi bookings dikhao jo uski category se match karein
+      if (providerCategory) {
+        bookings = allBookings.filter(b => 
+          (b.category && b.category.toLowerCase() === providerCategory.toLowerCase()) ||
+          (b.serviceCategory && b.serviceCategory.toLowerCase() === providerCategory.toLowerCase())
+        );
+      } else {
+        // Fallback agar category na mile to sari dikha do ya khali rakho
+        bookings = allBookings;
+      }
+
       render();
     }, (err) => {
       console.error("Firestore error:", err);
@@ -51,7 +76,6 @@ function render() {
   filtered.forEach(b => {
     const currentStatus = b.status || "Pending";
     
-    // Status ke mutabiq action buttons banana
     let actionButtons = "";
     if (currentStatus === "Pending") {
       actionButtons = `
@@ -103,7 +127,7 @@ function render() {
   if (document.getElementById("countCompleted")) document.getElementById("countCompleted").textContent = getCount("completed");
 }
 
-// 3. Status Change Global Function (Accepted, In Progress, Completed, Rejected)
+// 3. Status Change Global Function
 window.changeStatus = async function (bookingId, newStatus) {
   try {
     const bookingRef = doc(db, "bookings", bookingId);
@@ -125,8 +149,9 @@ document.getElementById("tabBar")?.addEventListener("click", (e) => {
   }
 });
 
-// 5. Logout Event
+// Logout Event (Customer & Provider dono ke liye)
 document.getElementById("logoutBtn")?.addEventListener("click", async () => {
   await signOut(auth);
-  window.location.href = "../login.html";
+  localStorage.removeItem('user'); // Session clear
+  window.location.href = "../login.html"; // Foran login page par redirect
 });

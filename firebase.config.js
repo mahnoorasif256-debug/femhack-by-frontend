@@ -22,11 +22,6 @@ import {
 } from "https://www.gstatic.com/firebasejs/12.17.0/firebase-firestore.js";
 
 
-
-
-
-
-
 // Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyDLAHD8YDG2ltckOMfTkfANlxISjdXJyN8",

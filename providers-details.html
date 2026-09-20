@@ -8,14 +8,19 @@
     <!-- FontAwesome CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
+    <!-- Google Font: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
     <!-- Bootstrap CDN -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="./style.css">
 </head>
-<body>
+<body class="bg-light">
 
   <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg sticky-top navbar-dark bg-slate py-3 border-bottom border-warning-subtle">
+  <nav class="navbar navbar-expand-lg sticky-top navbar-dark bg-slate py-3 border-bottom border-warning-subtle shadow-sm">
     <div class="container">
       <a class="navbar-brand fw-bold fs-3 d-flex align-items-center gap-2" href="index.html">
         <span class="bg-warning text-dark px-2 py-1 rounded-3 fs-4 shadow-sm">⚡</span>
@@ -28,13 +33,13 @@
       <div class="collapse navbar-collapse" id="navbarContent">
         <ul class="navbar-nav me-auto ms-lg-5 mb-2 mb-lg-0 gap-lg-3">
           <li class="nav-item">
-            <a class="nav-link active fw-medium px-3 text-warning" href="index.html">Home</a>
+            <a class="nav-link fw-medium px-3 text-light" href="index.html">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link fw-medium px-3 text-light" href="#services">Services</a>
+            <a class="nav-link active fw-medium px-3 text-warning" href="index.html#services">Services</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link fw-medium px-3 text-light" href="#how-it-works">How It Works</a>
+            <a class="nav-link fw-medium px-3 text-light" href="saved.html"><i class="fa-regular fa-heart me-1"></i>Saved</a>
           </li>
         </ul>
         <div class="d-flex flex-column flex-lg-row align-stretch align-lg-items-center gap-3 mt-3 mt-lg-0">
@@ -45,95 +50,157 @@
     </div>
   </nav>
 
-  <!-- Main Section -->
+  <!-- Breadcrumb Bar -->
+  <div class="bg-white border-bottom py-3">
+    <div class="container">
+      <a href="index.html" class="text-decoration-none text-secondary fs-7 fw-semibold d-inline-flex align-items-center gap-2 hover-warning">
+        <i class="fa-solid fa-arrow-left"></i> Back to all professionals
+      </a>
+    </div>
+  </div>
+
+  <!-- Main Section: Large Image on Left, Details & Reviews on Right -->
   <section class="py-5 bg-white text-dark">
-    <div class="container py-2">
-      <div class="row g-5">
+    <div class="container">
+      <div class="row g-5 align-items-start">
         
-        <!-- Left Column: Provider Card & Info -->
+        <!-- Left Column: Large Prominent Image & Price/Booking Card -->
         <div class="col-12 col-lg-5">
-          <div class="card bg-light border border-secondary border-opacity-25 rounded-4 p-4 text-center">
-            <img id="p-img" src="https://images.unsplash.com/photo-1540569014015-19a7be504e3a?w=400&auto=format&fit=crop&q=80" alt="Provider" class="rounded-circle object-fit-cover mx-auto mb-3 border border-warning border-3" width="130" height="130">
+          <div class="position-relative">
+            <img id="p-img" src="https://images.unsplash.com/photo-1540569014015-19a7be504e3a?w=600&auto=format&fit=crop&q=80" alt="Provider" class="rounded-4 object-fit-cover shadow-sm w-100" style="height: 460px;">
             
-            <h3 id="p-name" class="fw-bold text-dark mb-1">Ali Khan</h3>
-            <span id="p-category" class="badge bg-warning text-dark fw-bold px-3 py-2 rounded-pill mx-auto mb-3">Electrician</span>
+            <!-- Wishlist Button Overlay -->
+            <button type="button" id="detailWishlistBtn" class="position-absolute top-0 end-0 m-3 btn btn-light rounded-circle p-2 d-flex align-items-center justify-content-center shadow wishlist-btn border-0" style="width: 42px; height: 42px; background:white;" title="Save this provider">
+              <i class="fa-regular fa-heart text-danger fs-5"></i>
+            </button>
+          </div>
 
-            <div class="d-flex flex-wrap justify-content-center gap-3 text-secondary fs-7 mb-3">
-              <span><i class="fas fa-star text-warning me-1"></i> <strong class="text-dark" id="p-rating">4.9</strong> (120 reviews)</span>
-              <span><i class="fas fa-briefcase text-warning me-1"></i> <span id="p-exp" class="text-dark">6+ Years Exp.</span></span>
+          <!-- Pricing & Booking Card Box Below Image -->
+          <div class="card border border-light-subtle shadow-sm rounded-4 p-4 bg-light mt-4">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <span class="text-secondary fw-semibold">Starting Price</span>
+              <span id="p-price" class="fs-3 fw-bold text-dark">Rs. 2,500</span>
             </div>
-
-            <p class="text-secondary fs-7"><i class="fas fa-location-dot text-warning me-1"></i> <span id="p-location" class="text-dark">Karachi, Pakistan</span></p>
-
-            <hr class="border-secondary border-opacity-25 my-3">
-
-            <div class="d-flex justify-content-between align-items-center mb-4 px-2">
-              <span class="text-secondary fs-7">Service Fee</span>
-              <span id="p-price" class="fs-3 fw-bold text-warning">Rs. 1,500</span>
-            </div>
-
-            <button class="btn btn-warning w-100 py-3 rounded-pill fw-bold text-dark fs-6 shadow-sm" data-bs-toggle="modal" data-bs-target="#bookingModal">
+            <button id="bookServiceBtn" class="btn btn-warning w-100 py-3 rounded-pill fw-bold text-dark fs-6 shadow-sm mb-2">
               Book Service Now
             </button>
+            <small class="text-muted d-block text-center fs-8">You'll need to log in first to send a booking request.</small>
           </div>
         </div>
 
-        <!-- Right Column: Details & Verification -->
+        <!-- Right Column: Title, Ratings, Specs, About, Skills & Reviews -->
         <div class="col-12 col-lg-7">
-          <h4 class="fw-bold text-warning mb-3"><i class="fas fa-user-check me-2"></i>About Provider</h4>
-          <p class="text-dark leading-relaxed mb-4" id="p-desc">
-            Professional expert offering top-quality repair, installation, and maintenance services with guaranteed satisfaction and quick response times.
-          </p>
+          <div class="d-flex flex-column gap-4">
+            
+            <div>
+              <span id="p-category" class="text-warning fw-bold text-uppercase fs-7 tracking-wider mb-1 d-block">ELECTRICIAN</span>
+              <h1 id="p-name" class="fw-900 text-dark display-6 mb-2">Ahmed Electrical Services</h1>
+              
+              <div class="d-flex align-items-center gap-3 text-secondary fs-7 mb-3">
+                <div class="text-warning">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <strong class="text-dark ms-1" id="p-rating">4.9</strong> 
+                  <span class="text-muted">(5 reviews)</span>
+                </div>
+              </div>
 
-          <h4 class="fw-bold text-warning mb-3"><i class="fas fa-shield-halved me-2"></i>Guarantees & Verification</h4>
-          <div class="row g-3 mb-4">
-            <div class="col-12 col-sm-6">
-              <div class="p-3 bg-light rounded-3 border border-secondary border-opacity-25 d-flex align-items-center gap-3 h-100">
-                <i class="fas fa-check-circle text-success fs-4 flex-shrink-0"></i>
-                <div>
-                  <h6 class="mb-0 fw-bold text-dark">Verified Professional</h6>
-                  <small class="text-secondary">CNIC & Background Checked</small>
+              <!-- Availability Status (Yellow Theme) -->
+              <div class="d-flex align-items-center gap-2 text-warning fs-7 fw-semibold mb-3">
+                <i class="fas fa-circle fs-8"></i>
+                <span id="p-status">Available</span>
+              </div>
+            </div>
+
+            <hr class="text-muted opacity-25 my-0">
+
+            <!-- Location, Experience Grid -->
+            <div class="row g-3 py-2 text-secondary fs-7">
+              <div class="col-12 col-sm-6">
+                <span class="text-uppercase fs-8 fw-bold text-muted d-block mb-1">Location</span>
+                <span id="p-location" class="text-dark fw-semibold">Gulshan-e-Iqbal, Karachi Pakistan</span>
+              </div>
+              <div class="col-6 col-sm-6">
+                <span class="text-uppercase fs-8 fw-bold text-muted d-block mb-1">Experience</span>
+                <span id="p-exp" class="text-dark fw-semibold">8+ Years Exp.</span>
+              </div>
+            </div>
+
+            <hr class="text-muted opacity-25 my-0">
+
+            <!-- About Section -->
+            <div>
+              <h4 class="fw-bold text-dark mb-3">About</h4>
+              <p class="text-secondary lh-lg mb-0 fs-7" id="p-desc">
+                Professional expert offering top-quality repair, installation, and maintenance services with guaranteed satisfaction and quick response times.
+              </p>
+            </div>
+
+            <!-- Guarantees & Verification -->
+            <div>
+              <h5 class="fw-bold text-dark mb-3">Guarantees & Verification</h5>
+              <div class="row g-3">
+                <div class="col-12 col-sm-6">
+                  <div class="p-3 bg-light rounded-3 border-0 d-flex align-items-center gap-3 h-100">
+                    <div class="bg-warning-subtle text-warning p-2.5 rounded-circle d-flex align-items-center justify-content-center" style="width: 45px; height: 45px;">
+                      <i class="fas fa-check fs-5"></i>
+                    </div>
+                    <div>
+                      <h6 class="mb-0 fw-bold text-dark fs-7">Verified Professional</h6>
+                      <small class="text-muted fs-8">CNIC & Background Checked</small>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-sm-6">
+                  <div class="p-3 bg-light rounded-3 border-0 d-flex align-items-center gap-3 h-100">
+                    <div class="bg-warning-subtle text-warning p-2.5 rounded-circle d-flex align-items-center justify-content-center" style="width: 45px; height: 45px;">
+                      <i class="fas fa-clock fs-5"></i>
+                    </div>
+                    <div>
+                      <h6 class="mb-0 fw-bold text-dark fs-7">On-Time Arrival</h6>
+                      <small class="text-muted fs-8">30-45 Mins Quick Response</small>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
-            <div class="col-12 col-sm-6">
-              <div class="p-3 bg-light rounded-3 border border-secondary border-opacity-25 d-flex align-items-center gap-3 h-100">
-                <i class="fas fa-clock text-warning fs-4 flex-shrink-0"></i>
-                <div>
-                  <h6 class="mb-0 fw-bold text-dark">On-Time Arrival</h6>
-                  <small class="text-secondary">30-45 Mins Arrival</small>
-                </div>
+
+            <!-- Specialization & Skills -->
+            <div>
+              <h5 class="fw-bold text-dark mb-3">Specialization & Skills</h5>
+              <div class="d-flex flex-wrap gap-2" id="p-badges">
+                <span class="badge bg-light text-dark border px-3 py-2 rounded-pill fs-7 fw-semibold">Home Wiring</span>
+                <span class="badge bg-light text-dark border px-3 py-2 rounded-pill fs-7 fw-semibold">Breaker Repair</span>
               </div>
             </div>
-          </div>
 
-          <!-- Service Specialization Badges -->
-          <h4 class="fw-bold text-warning mb-3"><i class="fas fa-tools me-2"></i>Specialization & Skills</h4>
-          <div class="d-flex flex-wrap gap-2 mb-4" id="p-badges">
-            <span class="badge bg-slate text-warning border border-warning border-opacity-50 px-3 py-2 rounded-pill fs-7">Home Wiring</span>
-            <span class="badge bg-slate text-warning border border-warning border-opacity-50 px-3 py-2 rounded-pill fs-7">Breaker Repair</span>
-          </div>
-
-          <!-- Dynamic Client Feedback Snippet -->
-          <h4 class="fw-bold text-warning mb-3"><i class="fas fa-comment-dots me-2"></i>Client Feedback</h4>
-          <div class="card bg-light border border-secondary border-opacity-25 rounded-4 p-3 mb-3">
-            <div class="d-flex flex-wrap align-items-center justify-content-between gap-2 mb-2">
-              <div class="d-flex align-items-center gap-2">
-                <img id="review-img" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80" alt="Client" class="rounded-circle object-fit-cover" width="40" height="40">
-                <div>
-                  <h6 class="mb-0 fw-bold text-dark fs-7" id="review-name">Ayesha Malik</h6>
-                  <small class="text-muted" style="font-size: 11px;" id="review-time">2 days ago</small>
+            <!-- Client Feedback & Reviews -->
+            <div>
+              <h5 class="fw-bold text-dark mb-3">Client Feedback & Reviews</h5>
+              <div class="p-3 bg-light rounded-4 border-0">
+                <div class="d-flex flex-wrap align-items-center justify-content-between gap-2 mb-2">
+                  <div class="d-flex align-items-center gap-3">
+                    <img id="review-img" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80" alt="Client" class="rounded-circle object-fit-cover shadow-sm" width="45" height="45">
+                    <div>
+                      <h6 class="mb-0 fw-bold text-dark fs-7" id="review-name">Ayesha Malik</h6>
+                      <small class="text-muted fs-8" id="review-time">2 days ago</small>
+                    </div>
+                  </div>
+                  <div class="text-warning fs-7">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                  </div>
                 </div>
-              </div>
-              <div class="text-warning fs-7">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
+                <p class="text-secondary fs-7 mb-0 ps-lg-5 ms-lg-2 fst-italic" id="review-text">"Extremely professional and punctual. Fixed our house wiring issue very cleanly in no time. Highly recommended!"</p>
               </div>
             </div>
-            <p class="text-secondary fs-7 mb-0" id="review-text">"Extremely professional and punctual. Fixed our house wiring issue very cleanly in no time. Highly recommended!"</p>
+
           </div>
         </div>
 
@@ -144,13 +211,19 @@
   <!-- Booking Modal -->
   <div class="modal fade" id="bookingModal" tabindex="-1" aria-labelledby="bookingModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-      <div class="modal-content bg-slate text-white border border-secondary shadow-lg">
+      <div class="modal-content bg-slate text-white border border-secondary shadow-lg rounded-4">
         <div class="modal-header border-bottom border-secondary">
           <h5 class="modal-title fw-bold text-warning" id="bookingModalLabel">Book Service Request</h5>
           <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <div class="modal-body">
+        <div class="modal-body p-4">
+          <div id="bookingSuccessBox" class="booking-success-box">
+            <i class="fa-solid fa-circle-check"></i>
+            <h5 class="fw-bold text-white mb-1">Booking request sent!</h5>
+            <p class="text-secondary fs-7 mb-0">The provider will confirm your request soon. You can track it from "My Bookings".</p>
+          </div>
           <form id="bookingForm">
+            <div id="bookingFormError" class="text-danger fs-7 mb-2" style="display:none;"></div>
             <div class="mb-3">
               <label class="form-label text-light fs-7">Service Date</label>
               <input type="date" id="bookDate" class="form-control bg-dark text-white border-secondary" required>
@@ -167,7 +240,7 @@
               <label class="form-label text-light fs-7">Service Details / Work Description</label>
               <textarea id="bookDesc" class="form-control bg-dark text-white border-secondary" rows="3" placeholder="Describe the issue briefly..."></textarea>
             </div>
-            <button type="submit" class="btn btn-warning w-100 fw-bold py-2 mt-2">Confirm & Send Booking</button>
+            <button type="submit" id="bookingSubmitBtn" class="btn btn-warning w-100 fw-bold py-2 mt-2 shadow-sm">Confirm & Send Booking</button>
           </form>
         </div>
       </div>
@@ -178,8 +251,6 @@
   <footer class="bg-slate text-light pt-5 pb-4 border-top border-secondary">
     <div class="container">
       <div class="row g-4 mb-5">
-        
-        <!-- Column 1 -->
         <div class="col-12 col-lg-3 col-md-6">
           <a class="navbar-brand fw-bold fs-3 d-flex align-items-center gap-2 mb-3" href="index.html">
             <span class="bg-warning text-dark px-2 py-1 rounded-3 fs-4 shadow-sm">⚡</span>
@@ -188,34 +259,24 @@
           <p class="text-secondary fs-7 mb-4">QuickServe connects you with verified local service professionals quickly and hassle-free.</p>
           
           <div class="d-flex gap-2">
-            <a href="#" class="social-icon facebook rounded-circle d-flex align-items-center justify-content-center text-decoration-none text-light bg-dark" style="width:35px; height:35px;">
-              <i class="fab fa-facebook-f"></i>
-            </a>
-            <a href="#" class="social-icon whatsapp rounded-circle d-flex align-items-center justify-content-center text-decoration-none text-light bg-dark" style="width:35px; height:35px;">
-              <i class="fab fa-whatsapp"></i>
-            </a>
-            <a href="#" class="social-icon instagram rounded-circle d-flex align-items-center justify-content-center text-decoration-none text-light bg-dark" style="width:35px; height:35px;">
-              <i class="fab fa-instagram"></i>
-            </a>
-            <a href="#" class="social-icon youtube rounded-circle d-flex align-items-center justify-content-center text-decoration-none text-light bg-dark" style="width:35px; height:35px;">
-              <i class="fab fa-youtube"></i>
-            </a>
+            <a href="#" class="social-icon facebook rounded-circle d-flex align-items-center justify-content-center text-decoration-none text-light bg-dark" style="width:35px; height:35px;"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="social-icon whatsapp rounded-circle d-flex align-items-center justify-content-center text-decoration-none text-light bg-dark" style="width:35px; height:35px;"><i class="fab fa-whatsapp"></i></a>
+            <a href="#" class="social-icon instagram rounded-circle d-flex align-items-center justify-content-center text-decoration-none text-light bg-dark" style="width:35px; height:35px;"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="social-icon youtube rounded-circle d-flex align-items-center justify-content-center text-decoration-none text-light bg-dark" style="width:35px; height:35px;"><i class="fab fa-youtube"></i></a>
           </div>
         </div>
 
-        <!-- Column 2 -->
         <div class="col-12 col-lg-2 col-md-6 ps-lg-4">
           <h5 class="fw-bold text-white mb-2 position-relative pb-2">Quick Links</h5>
           <div class="bg-warning mb-3" style="width: 40px; height: 2px;"></div>
           <ul class="list-unstyled d-flex flex-column gap-2">
             <li><a href="index.html" class="footer-link text-decoration-none text-secondary">&ndash; Home</a></li>
-            <li><a href="#services" class="footer-link text-decoration-none text-secondary">&ndash; Services</a></li>
+            <li><a href="index.html#services" class="footer-link text-decoration-none text-secondary">&ndash; Services</a></li>
             <li><a href="login.html" class="footer-link text-decoration-none text-secondary">&ndash; Login</a></li>
             <li><a href="signup.html" class="footer-link text-decoration-none text-secondary">&ndash; Sign Up</a></li>
           </ul>
         </div>
 
-        <!-- Column 3 -->
         <div class="col-12 col-lg-3 col-md-6">
           <h5 class="fw-bold text-white mb-2 position-relative pb-2">Contact Us</h5>
           <div class="bg-warning mb-3" style="width: 40px; height: 2px;"></div>
@@ -224,7 +285,6 @@
           <p class="text-secondary fs-7"><i class="fas fa-phone text-warning me-2"></i>+92 300 1234567</p>
         </div>
 
-        <!-- Column 4 -->
         <div class="col-12 col-lg-4 col-md-6">
           <h5 class="fw-bold text-white mb-2 position-relative pb-2">Newsletter</h5>
           <div class="bg-warning mb-3" style="width: 40px; height: 2px;"></div>
@@ -235,7 +295,6 @@
             <button class="btn btn-warning fw-bold text-nowrap px-4 py-2 text-dark">Subscribe &raquo;</button>
           </div>
         </div>
-
       </div>
 
       <hr class="border-secondary my-4">
@@ -250,9 +309,36 @@
     </div>
   </footer>
 
+  <!-- Navbar Auth State Script -->
+  <script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const user = JSON.parse(localStorage.getItem('user'));
+    const navAuthContainer = document.querySelector('#navbarContent .d-flex');
+    
+    if (user && navAuthContainer) {
+      const firstName = user.name ? user.name.split(" ")[0] : "User";
+      const dashboardLink = user.role === 'provider' ? './provider/provider.html' : './customer/customer.html';
+      
+      navAuthContainer.innerHTML = `
+        <span class="text-white small align-self-center">Hi, ${firstName}</span>
+        <a href="${dashboardLink}" class="btn btn-warning rounded-pill px-3 fw-bold text-dark text-decoration-none">My Dashboard</a>
+        <a href="javascript:void(0);" id="navLogoutBtn" class="btn btn-outline-light btn-sm rounded-pill px-3">Logout</a>
+      `;
+
+      document.getElementById('navLogoutBtn')?.addEventListener('click', () => {
+        localStorage.removeItem('user');
+        window.location.reload();
+      });
+    }
+  });
+  </script>
+
   <!-- Scripts -->
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.min.js" integrity="sha384-G/EV+4j2dNv+tEPo3++6LCgdCROaejBqfUeNjuKAiuXbjrxilcCdDz6ZAVfHWe1Y" crossorigin="anonymous"></script>
+  <script src="./providers-data.js"></script>
+  <script src="./providers-details.js"></script>
   <script type="module" src="./app.js"></script>
+  <script type="module" src="./booking.js"></script>
 </body>
 </html>
